@@ -5,13 +5,13 @@ import os
 # プロジェクトのルートディレクトリから実行することを前提としたパス設定
 
 # 入力ファイルのパス
-input_path_gpt_w_pref = '250728/data/temp0.7/gpt_agent_results_high_univ_0.7.csv'
-input_path_gpt_wo_pref = '250728/data/temp0.7/gpt_agent_results_high_univ_0.7_NoMeasure.csv'
+input_path_gpt_w_pref = '250728/data/temp1.0/gpt_agent_results_high_univ_1.0.csv'
+input_path_gpt_wo_pref = '250728/data/temp1.0/gpt_agent_results_high_univ_1.0_NoMeasure.csv'
 input_path_survey = '250728/data/20191031_DatasetCreation.csv'
 
 # 出力ディレクトリのパス
 output_dir = '250728/data'
-output_filename = 'merged_results_high_univ_0.7_wpref.csv'
+output_filename = 'merged_results_high_univ_1.0_wpref.csv'
 os.makedirs(output_dir, exist_ok=True) # ディレクトリがなければ作成
 
 try:

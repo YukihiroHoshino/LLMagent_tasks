@@ -4,9 +4,9 @@ import numpy as np
 # --- Step 1: データの読み込みと距離計算の関数の定義 ---
 
 try:
-    df = pd.read_csv('250728/data/merged_results_high_univ_0.7_wpref.csv')
+    df = pd.read_csv('250728/data/merged_results_high_univ_1.0_wpref.csv')
 except FileNotFoundError:
-    print("エラー: 'merged_results_high_univ_0.7_wpref.csv' が見つかりません。")
+    print("エラー: 'merged_results_high_univ_1.0_wpref.csv' が見つかりません。")
     exit()
 
 def calculate_w2_distance(series1, series2):
