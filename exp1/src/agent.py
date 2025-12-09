@@ -68,7 +68,7 @@ JSON形式で以下の情報を出力してください。
             messages.append({"role": "system", "content": "これが最後の会話ターンです。必ず 'accept' か 'reject' を決定してください。"})
 
         completion = self.client.beta.chat.completions.parse(
-            model="gpt-4o-2024-08-06",
+            model="gpt-4o-mini",
             messages=messages,
             response_format=AgentDecision,
         )
