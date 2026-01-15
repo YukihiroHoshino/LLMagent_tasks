@@ -1,0 +1,207 @@
+{
+  "experiment_id": "20260115_234615",
+  "rounds": [
+    {
+      "round_id": 1,
+      "pairs": [
+        {
+          "pair": "Parent_A-Nursery_A",
+          "conversation": [
+            {
+              "sender": "Parent_A",
+              "action": "[APPLY]",
+              "message": "We are very impressed by Nursery A's curriculum and environment, placing it highly on our list of preferred schools. We formally submit our application now and hope to secure a place for our child.",
+              "thought": "Parent_A's goal is to maximize the rank of the matched nursery. Parent_A's preferences are ['Nursery_B', 'Nursery_C', 'Nursery_A', 'Nursery_E', 'Nursery_D'].\n\n1. Nursery_B (1st choice): Parent_A is ranked 5th. Parent_C (Rank 3) is likely applying (B is C's 1st choice). Immediate rejection is highly probable.\n2. Nursery_C (2nd choice): Parent_A is ranked 5th. Parent_E (Rank 4) is likely applying (C is E's 1st choice). Immediate rejection is highly probable.\n3. Nursery_A (3rd choice): Parent_A is ranked 3rd. The most likely serious competitor is Parent_B (A is B's 1st choice), who is ranked 4th at Nursery_A. Parent_A outranks Parent_B. Higher ranked parents (E and D) prefer B or C and are unlikely to apply to A in R1. Applying here gives a high probability of securing the 3rd choice immediately.\n4. Nursery_E (4th choice): Parent_A is ranked 1st. Application guarantees the 4th choice, but the 3rd choice (A) is strictly preferred.\n\nTo maximize preference rank, Parent_A should strategically apply to Nursery_A in Round 1, leveraging the priority advantage over the likely top applicant (Parent_B) to secure the 3rd preferred school."
+            },
+            {
+              "sender": "Nursery_A",
+              "action": "[REJECT]",
+              "message": "Thank you for your enthusiastic application and strong interest in Nursery A. We appreciate you making us a top choice. However, due to the extremely competitive nature of this initial selection round and our limited capacity, we are unable to extend an offer to you at this time. We wish you the best in finding a suitable nursery.",
+              "thought": "I am Nursery_A, seeking the highest possible match on my priority list: ['Parent_E' (1), 'Parent_D' (2), 'Parent_A' (3), 'Parent_B' (4), 'Parent_C' (5)]. My quota is 1. In this round, Parent_A (Rank 3) and Parent_B (Rank 4) have applied. Since this is Round 1, and I still have two significantly higher-ranked parents (Parent_E and Parent_D) who have not yet applied to me, accepting Parent_A now would prevent me from matching with my top preferences if they become available in later rounds. Although Parent_A is the highest-ranked applicant currently, rejecting them is a calculated risk to hold out for Parent_E or Parent_D. Therefore, I must reject Parent_A to keep my quota open."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Parent_B-Nursery_A",
+          "conversation": [
+            {
+              "sender": "Parent_B",
+              "action": "[APPLY]",
+              "message": "We are thrilled by the prospect of joining Nursery_A. It is our top preference, and we are formally applying for the available place immediately. We are committed to accepting an offer if extended.",
+              "thought": "My objective is to secure the highest possible match on my preference list: ['Nursery_A', 'Nursery_B', 'Nursery_C', 'Nursery_D', 'Nursery_E']. Nursery_A is my top choice (P1). I need to assess the competition for Nursery_A. Nursery_A's priority list places me 4th (P4) out of 5 parents, meaning I have three parents ranked ahead of me: Parent_E (P1), Parent_D (P2), and Parent_A (P3).\n\nHowever, analyzing the preferences of these higher-priority parents:\n*   Parent_E's P1 is Nursery_C. Nursery_A is P3.\n*   Parent_D's P1 is Nursery_B. Nursery_A is P3.\n*   Parent_A's P1 is Nursery_B. Nursery_A is P3.\n\nAssuming all parents apply to their absolute top preference in Round 1 (a rational starting point in decentralized matching):\n*   P_E applies to Nursery_C.\n*   P_D applies to Nursery_B.\n*   P_A applies to Nursery_B.\n\nThis means Nursery_A is likely to receive zero applications from parents ranked higher than me in Round 1. By applying to Nursery_A immediately ([APPLY]), I maximize my chance of securing my P1 match without competition in this initial round. Since Nursery_A has a capacity of 1, and I would be the highest ranked applicant among those who applied, they should accept my application."
+            },
+            {
+              "sender": "Nursery_A",
+              "action": "[ACCEPT]",
+              "message": "Thank you for making Nursery_A your top preference and for your formal application. We were highly impressed by your commitment. We are pleased to inform you that we are extending an offer of a place at Nursery_A. Please confirm your acceptance to secure the match.",
+              "thought": "I am Nursery_A, seeking to match with the highest possible priority parent within my quota (1). My priority list is ['Parent_E', 'Parent_D', 'Parent_A', 'Parent_B', 'Parent_C'].\nIn this round, Parent_A (Rank 3) and Parent_B (Rank 4) applied.\nAlthough Parent_A is ranked higher, the provided history indicates that Parent_A's application was already processed and rejected by Nursery_A earlier in this round's sequence (or a prior step). Assuming Parent_A is no longer available for this allocation slot, Parent_B becomes the highest remaining priority applicant (Rank 4).\nSince Parent_B applied with [APPLY] and my quota is 1, I will accept Parent_B to secure a desirable match."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Parent_C-Nursery_B",
+          "conversation": [
+            {
+              "sender": "Parent_C",
+              "action": "[APPLY]",
+              "message": "We are highly impressed by your program and facilities. Nursery_B is our absolute top choice for our child's education. We formally submit our application now and hope to secure a spot.",
+              "thought": "As Parent_C, my top preference is Nursery_B. In Round 1, the optimal strategy is to apply to my most preferred option.\nParent_C Preference Rank 1: Nursery_B.\n\nAnalyzing competition for Nursery_B (Capacity 1):\nNursery_B Priority List: P_E, P_B, P_C, P_D, P_A.\n\nPredicting R1 applications based on Parent preferences:\n- P_A targets N_B (Rank 1).\n- P_B targets N_A (Rank 1).\n- P_C targets N_B (Rank 1).\n- P_D targets N_B (Rank 1).\n- P_E targets N_C (Rank 1).\n\nApplicants to N_B are P_A, P_C, P_D.\nN_B ranks these applicants: P_C (3rd overall priority), P_D (4th overall priority), P_A (5th overall priority).\nSince P_C is the highest ranked applicant among those who apply, Nursery_B is likely to [ACCEPT] Parent_C. I will proceed with a formal application."
+            },
+            {
+              "sender": "Nursery_B",
+              "action": "[REJECT]",
+              "message": "Thank you very much for your enthusiastic application and for considering Nursery_B your top choice. We are deeply impressed by your commitment. However, due to the extremely competitive nature of this round and the need to thoroughly evaluate all candidates based on our criteria, we are unable to confirm a spot at this moment. We wish you the best in your continued search.",
+              "thought": "I am Nursery_B, with a single quota. My priority list is ['Parent_E', 'Parent_B', 'Parent_C', 'Parent_D', 'Parent_A']. Parent_C is my 3rd priority, but they have applied formally, listing me as their 1st choice. My top two priorities, Parent_E and Parent_B, are likely applying elsewhere (Parent_E to N_C, Parent_B to N_A). Parent_B lists me as their 2nd choice, meaning they are likely to apply to me next round if rejected by N_A. Since Parent_C is not my highest priority and I only have one spot, I will strategically reject this application now to keep my quota open for Parent_E or Parent_B, who represent higher utility. I will provide a polite rejection indicating the high competition."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Parent_D-Nursery_C",
+          "conversation": [
+            {
+              "sender": "Parent_D",
+              "action": "[APPLY]",
+              "message": "We are deeply impressed by your program and Nursery_C is our top priority among currently available options. We are formally submitting our application now and hope to secure a spot immediately.",
+              "thought": "My true preference list is ['Nursery_B', 'Nursery_C', 'Nursery_A', 'Nursery_E', 'Nursery_D']. My top choice, Nursery_B, is highly competitive, and I am ranked 4th (P_E, P_B, P_C are preferred). If Parent_C applies there (which is their top choice), I will be rejected.\n\nI need to strategically target a high-ranked nursery where I have a good chance of immediate acceptance, anticipating that high-priority agents will take my P1 and P3 choices (Nursery_A is likely taken by Parent_B).\n\nMy second choice is Nursery_C. I am ranked 3rd at Nursery_C (P_B, P_C are preferred). Parent_E is applying to N_C (it's P_E's top choice), but Parent_E is ranked 4th at N_C. Parent_B and Parent_C, who are ranked higher than me at N_C, are applying to N_A and N_B, respectively.\n\nTherefore, if I apply to Nursery_C, I will be the highest priority applicant (Rank 3) among the received applications (P_D, P_E) and should be accepted immediately. This secures my Rank 2 preference, which is a significant improvement over risking rejection and ending up with N_D (Rank 5)."
+            },
+            {
+              "sender": "Nursery_C",
+              "action": "[ACCEPT]",
+              "message": "Thank you, Parent_D, for your enthusiastic application and commitment to our program. We are delighted to inform you that we have reviewed your submission and are pleased to offer you a spot at Nursery_C.",
+              "thought": "I am Nursery_C and my quota is 1. My priority list is ['Parent_B', 'Parent_C', 'Parent_D', 'Parent_E', 'Parent_A'].\nIn Round 1, I received applications from Parent_D (3rd priority) and Parent_E (4th priority).\nSince Parent_D is ranked higher than Parent_E, and I have not received applications from my 1st (Parent_B) or 2nd (Parent_C) choices, Parent_D is the best available match this round. Given the immediate application, I should accept Parent_D to secure a high-priority match (P3) and fulfill my quota."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Parent_E-Nursery_C",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[APPLY]",
+              "message": "Nursery_C is our family's first choice. We are highly motivated to join your community and believe we are an excellent fit. We formally apply for a spot.",
+              "thought": "As Parent_E, my top preference is Nursery_C. Although I am ranked 4th in Nursery_C's priority list (['Parent_B', 'Parent_C', 'Parent_D', 'Parent_E', 'Parent_A']), I must apply to my most preferred option in Round 1 to maximize my chances of securing a high-ranked match. I will send a strong application ([APPLY]) emphasizing that Nursery_C is my absolute top choice."
+            },
+            {
+              "sender": "Nursery_C",
+              "action": "[REJECT]",
+              "message": "Thank you for your enthusiastic application and for considering Nursery_C as your family's first choice. We truly appreciate your interest. However, due to the high demand and limited capacity, our single spot has just been filled in this round. Consequently, we are unable to offer you a place at this time.",
+              "thought": "I am Nursery_C. My quota is 1. The current status indicates that I have already matched with Parent_D ('Matched Parents': ['Parent_D']) and my 'Remaining Quota' is 0. Both Parent_D and Parent_E submitted [APPLY] messages in this round. Since the match with Parent_D is already recorded and accepted in the history, I must adhere to the constraint that if the quota is 0, I MUST [REJECT] any [APPLY]. Therefore, I must reject Parent_E, regardless of their priority ranking (Parent_E is ranked 4th, while Parent_D is ranked 3rd, confirming Parent_D was a slightly better match anyway, but the primary reason for rejection is the lack of quota)."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 2,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_D",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[APPLY]",
+              "message": "Nursery_D is our highest remaining priority (our second choice overall). We have thoroughly researched your program and are fully committed to joining your community. We formally apply for the available spot.",
+              "thought": "I am Parent_E. My true preferences are ['Nursery_C', 'Nursery_D', 'Nursery_A', 'Nursery_E', 'Nursery_B']. In Round 1, I was rejected by Nursery_C (P1), which is now matched. The prompt indicates that Nursery_A is also matched, as it is not in the list of unmatched nurseries. My highest remaining preference is Nursery_D (P2). Nursery_D is available. I must target Nursery_D immediately with a formal application ([APPLY]).\n\nFor Nursery_D, I am the 4th priority (below Parent_D, Parent_A, and Parent_C). Parent_D and Parent_A rank Nursery_D very low (P5), so they are unlikely to be applying unless all their higher options are exhausted. Parent_C ranks Nursery_D as P3, making them strong competition if their P1 (B) or P2 (C, matched) rejected them. Since Nursery_D is my P2, I must apply and try to secure the spot, especially before other parents move down their lists."
+            },
+            {
+              "sender": "Nursery_D",
+              "action": "[REJECT]",
+              "message": "Thank you, Parent_E, for your enthusiastic application and for ranking us so highly. We truly appreciate your commitment. However, due to the extremely high volume of applications and our limited capacity, we are currently unable to extend an offer at this time. We wish you the best in your search.",
+              "thought": "I am Nursery_D, with a quota of 1. My priority list is ['Parent_D', 'Parent_A', 'Parent_C', 'Parent_E', 'Parent_B']. Parent_E (Rank 4) has submitted a formal [APPLY]. My top two priorities, Parent_D and Parent_A, both rank Nursery_D as their last choice (Rank 5), making it highly unlikely they will apply soon. My third priority is Parent_C, who ranks Nursery_D third overall. Since Parent_C is a much more plausible higher-ranked candidate than D or A, and it is only Round 2, accepting Parent_E now would immediately fill my quota with my 4th choice, potentially missing out on Parent_C (Rank 3). I need to keep my spot open for Parent_C. Therefore, I must reject Parent_E."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Parent_C-Nursery_B",
+          "conversation": [
+            {
+              "sender": "Parent_C",
+              "action": "[APPLY]",
+              "message": "We understand the highly competitive nature of your admissions process, but Nursery_B remains our undisputed top choice. We are formally reapplying in this round, hoping that our deep commitment to your program aligns with your current needs for an exceptional student.",
+              "thought": "In Round 1, Nursery_A and Nursery_C matched, leaving Nursery_B, Nursery_D, and Nursery_E available. Parent_C's preference list is ['Nursery_B', 'Nursery_C', 'Nursery_D', 'Nursery_E', 'Nursery_A']. Nursery_B is Parent_C's top available choice.\n\nNursery_B's original priority list was ['Parent_E', 'Parent_B', 'Parent_C', 'Parent_D', 'Parent_A'].\n\nAssuming the highest priority parents matched elsewhere (e.g., Parent_E matched A, Parent_B matched C), Parent_C (original P3) is now the highest priority remaining candidate for Nursery_B. \n\nAlthough Parent_C was rejected in Round 1, the market dynamics have shifted favorably. Given that Nursery_B is P1 and Parent_C is now likely the top priority applicant for B, Parent_C must re-apply immediately to secure this highly desired spot."
+            },
+            {
+              "sender": "Nursery_B",
+              "action": "[ACCEPT]",
+              "message": "We deeply appreciate your continued commitment and enthusiasm for Nursery_B. Your formal reapplication, coupled with the clear alignment of your family's values with our program, has made a significant impression. After careful consideration, we are delighted to offer your child a confirmed place at Nursery_B. We look forward to welcoming you into our community.",
+              "thought": "I am Nursery_B, quota 1. My priority list is ['Parent_E', 'Parent_B', 'Parent_C', 'Parent_D', 'Parent_A'].\nIn this round, Parent_C (Rank 3) and Parent_A (Rank 5) have applied.\nParent_C is the highest priority applicant currently in my inbox and has demonstrated strong commitment by reapplying after being rejected in Round 1 (Nursery_B is Parent_C's P1 choice).\nParent_E (P1) is unlikely to apply soon as Nursery_B is their P5 choice. Parent_B (P2) has not applied this round, likely pursuing Nursery_A (their P1 choice).\nSecuring Parent_C (P3) now is a very strong outcome and prevents the risk of Parent_C pursuing their other high preferences (like Nursery_C, where they are P2 priority). I will accept Parent_C immediately to fill my quota with a high-priority match."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Parent_A-Nursery_B",
+          "conversation": [
+            {
+              "sender": "Parent_A",
+              "action": "[APPLY]",
+              "message": "Nursery B remains our absolute top preference due to its outstanding reputation and philosophy. We are highly motivated to secure a place here and wish to formally submit our application immediately. We hope to receive a favorable response.",
+              "thought": "My highest remaining preference is Nursery_B (Rank 1). Although my priority ranking at Nursery_B is the lowest (5th), I must attempt to secure my top choice first, as per the standard strategy in preference-based allocation systems. I will submit a formal application [APPLY] to signal strong commitment and test if higher priority parents have been matched elsewhere or applied to other schools."
+            },
+            {
+              "sender": "Nursery_B",
+              "action": "[REJECT]",
+              "message": "Thank you, Parent_A, for your continued interest and enthusiasm for Nursery_B, recognizing us as your top preference. We deeply appreciate your formal application. However, we regret to inform you that due to the overwhelming demand and the completion of our current selection process, our single available placement has just been filled. We are unable to offer you a spot at this time. We wish you the very best in securing a placement elsewhere.",
+              "thought": "I am Nursery_B. My quota for this allocation round is 1, and I have already matched with Parent_C in this round (who is rank 3 on my priority list: ['Parent_E', 'Parent_B', 'Parent_C', 'Parent_D', 'Parent_A']). Therefore, my Remaining Quota is now 0. Parent_A (rank 5) has sent an [APPLY] message. Since my quota is exhausted, I must reject Parent_A according to the constraints."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 3,
+      "pairs": [
+        {
+          "pair": "Parent_A-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_A",
+              "action": "[APPLY]",
+              "message": "After careful consideration of the remaining options, we recognize Nursery E's unique strengths and excellent fit for our child's needs. We place Nursery E highly on our current list of preferences and wish to formally submit our application now to secure the remaining place.",
+              "thought": "I am Parent_A. My true preference list is ['Nursery_B', 'Nursery_C', 'Nursery_A', 'Nursery_E', 'Nursery_D'].\nI have been rejected by Nursery_B (Rank 1) and Nursery_A (Rank 3). I assume Nursery_C (Rank 2) is also matched, as it is not listed in the available nurseries.\nI must choose between the remaining available nurseries: Nursery_E (Rank 4) and Nursery_D (Rank 5).\n\nMy primary target is Nursery_E, my highest remaining preference.\n\nNursery_E's Priority List: ['Parent_A', 'Parent_C', 'Parent_B', 'Parent_E', 'Parent_D'].\nCrucially, Parent_A is Nursery_E's top priority (#1).\n\nSince Nursery_E is open and I am their top choice, an immediate formal application ([APPLY]) is the optimal strategy to secure a match, even though E is only my 4th choice overall. Given that higher preferences failed, securing a guaranteed match now is paramount."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[ACCEPT]",
+              "message": "Thank you for your application, Parent A. We are delighted that you recognize our program's value. Given your family's strong fit with our nursery environment and our high regard for your application, we are pleased to offer you the available place.",
+              "thought": "I am Nursery_E. My quota is 1 and I currently have no matches. Parent_A has submitted a formal application ([APPLY]). Parent_A is my highest priority candidate (Rank 1) on my 'True Priority List': ['Parent_A', 'Parent_C', 'Parent_B', 'Parent_E', 'Parent_D']. Since Parent_A is my top choice and I have an available slot, I should accept this application immediately to secure the optimal match."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Parent_E-Nursery_D",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[APPLY]",
+              "message": "We appreciate you considering our previous application. Since Nursery_D remains our highest priority among the available institutions (our overall second choice), our commitment is unwavering. We formally re-apply for the open spot and are ready to accept immediately.",
+              "thought": "Parent_E's True Preference List is ['Nursery_C', 'Nursery_D', 'Nursery_A', 'Nursery_E', 'Nursery_B'].\nNursery_C and Nursery_A/B are implicitly matched (as they are not in the 'not yet matched' list, except Nursery_D).\nThe remaining available nurseries are ['Nursery_D', 'Nursery_E'].\nNursery_D (Rank 2) is the highest remaining preference for Parent_E, followed by Nursery_E (Rank 4).\nDespite being rejected by Nursery_D previously, since it is still available, Parent_E must prioritize applying there again to maximize utility. I will reiterate commitment."
+            },
+            {
+              "sender": "Nursery_D",
+              "action": "[ACCEPT]",
+              "message": "Thank you, Parent_E, for your continued commitment and re-application. We recognize that you have consistently prioritized Nursery_D. After careful review of all candidates, we are pleased to inform you that we are extending an offer of admission. We look forward to welcoming you to our community.",
+              "thought": "I am Nursery_D, quota 1. My priority list is P1: Parent_D, P2: Parent_A, P3: Parent_C, P4: Parent_E, P5: Parent_B. Parent_E is currently applying [APPLY] and is highly committed (re-applying after a previous rejection, ranking me P2 overall). My highest priorities (P1, P2) rank me last (P5), and P3 ranks me P3. Since we are in Round 3 and none of the higher priorities have engaged, the probability of P1 or P2 applying is extremely low, and Parent_C may be matched with their P1 or P2 (Nursery B or C). Accepting Parent_E (P4) secures a high-quality match (P2 preference for them) and fulfills my quota, mitigating the risk of ending up unmatched by holding out for parents who rank me poorly. I will accept Parent_E."
+            }
+          ],
+          "result": "MATCHED"
+        }
+      ]
+    }
+  ],
+  "final_matches": {
+    "Parent_A": "Nursery_E",
+    "Parent_B": "Nursery_A",
+    "Parent_C": "Nursery_B",
+    "Parent_D": "Nursery_C",
+    "Parent_E": "Nursery_D"
+  }
+}

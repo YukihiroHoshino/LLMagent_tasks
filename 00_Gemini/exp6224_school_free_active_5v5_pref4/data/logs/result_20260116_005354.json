@@ -1,0 +1,358 @@
+{
+  "experiment_id": "20260116_005354",
+  "rounds": [
+    {
+      "round_id": 1,
+      "pairs": [
+        {
+          "pair": "Student_A-School_D",
+          "conversation": [
+            {
+              "sender": "Student_A",
+              "action": "[APPLY]",
+              "message": "Dear Admissions Committee at School_D, I am writing to formally apply for admission. School_D represents the pinnacle of educational excellence in this market, and it is my absolute first choice. I am highly committed to contributing positively to your rigorous academic environment and community.",
+              "thought": "My objective is to secure a match with the highest possible school on my preference list: ['School_D', 'School_A', 'School_B', 'School_E', 'School_C']. My top choice is School_D. Although I am ranked last (5th) on School_D's priority list, maximizing my outcome requires me to apply to my top choice first in Round 1. I will send a formal application ([APPLY]) immediately."
+            },
+            {
+              "sender": "School_D",
+              "action": "[REJECT]",
+              "message": "Dear Student_A, we appreciate your strong interest in School_D and your formal application. However, due to the extremely competitive nature of this year's applicant pool and limited capacity, we regret to inform you that we are unable to offer you admission at this time. We wish you the best in finding the right educational placement.",
+              "thought": "I am School_D. My quota is 1. My priority list is ['Student_B', 'Student_D', 'Student_E', 'Student_C', 'Student_A']. Student_A is my lowest priority (Rank 5). I have received applications from Student_D (Rank 2), Student_E (Rank 3), and Student_C (Rank 4), all of whom rank higher than Student_A. To maximize my outcome, I must reject Student_A to keep my quota open for a higher-priority candidate (Student_D or Student_E) from the current inbox applications."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Student_C-School_D",
+          "conversation": [
+            {
+              "sender": "Student_C",
+              "action": "[APPLY]",
+              "message": "School_D is my absolute first choice. I have thoroughly researched your academic programs and believe my commitment and potential align perfectly with your values. I formally submit my application and hope to be considered for admission.",
+              "thought": "As Student_C, my goal is to secure a match with my highest preferred school. My top choice is School_D. Although School_D ranks me 4th, the standard stable matching strategy requires applying to the top choice first, regardless of the expected outcome, to test the market. I will formally apply to School_D in Round 1."
+            },
+            {
+              "sender": "School_D",
+              "action": "[REJECT]",
+              "message": "Dear Student_C, we appreciate your strong interest in School_D and your formal application. We recognize School_D is your first choice. However, given the unprecedented volume of highly qualified candidates this round and our limited capacity, we regret that we cannot offer you admission at this time. We wish you success in your future academic pursuits.",
+              "thought": "I am School_D with a quota of 1. My priority list is ['Student_B', 'Student_D', 'Student_E', 'Student_C', 'Student_A']. Student_B (Rank 1) did not apply. The current applicants are Student_D (Rank 2), Student_E (Rank 3), Student_C (Rank 4 - target), and Student_A (Rank 5). To maximize my utility and secure the highest possible ranked student, I must reject Student_C to keep the quota open for Student_D or Student_E, who are higher priority."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Student_D-School_D",
+          "conversation": [
+            {
+              "sender": "Student_D",
+              "action": "[APPLY]",
+              "message": "I am formally submitting my application to School_D. Your institution aligns perfectly with my academic goals, and I am highly motivated to contribute positively to your community.",
+              "thought": "As Student_D, my highest preference is School_D (Rank 1). I must prioritize securing my top choice immediately, as quotas are tight (Capacity 1). I check School_D's priority list: Student_D is ranked 2nd, only behind Student_B. If Student_B applies to their top choice (School_E), I have a very strong chance of being accepted by School_D. Given the high priority placement, I will submit a formal application immediately."
+            },
+            {
+              "sender": "School_D",
+              "action": "[ACCEPT]",
+              "message": "Dear Student_D, we are delighted to receive your application. Your profile aligns exceptionally well with our institutional goals. We are pleased to offer you immediate admission to School_D. Congratulations!",
+              "thought": "I am School_D, and my quota is 1. My priority list is ['Student_B', 'Student_D', 'Student_E', 'Student_C', 'Student_A']. In this round, I received applications from Student_A (Rank 5), Student_C (Rank 4), Student_D (Rank 2), and Student_E (Rank 3). Student_D is the highest-ranked applicant currently applying. Since securing a high-priority student early is critical, and Student_D is my second overall preference, I should accept this application immediately to secure the match and fill my quota."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Student_E-School_D",
+          "conversation": [
+            {
+              "sender": "Student_E",
+              "action": "[APPLY]",
+              "message": "I am Student_E, and School_D is my absolute first choice. I am highly motivated to contribute positively to your school environment and academic reputation. I formally submit my application now, hoping for your favorable consideration.",
+              "thought": "As Student_E, my goal is to secure my highest possible preference. My top choice is School_D. I will apply immediately in Round 1.\n\nStudent_E Preference: ['School_D', 'School_E', 'School_C', 'School_B', 'School_A'].\nSchool_D Priority: ['Student_B', 'Student_D', 'Student_E', 'Student_C', 'Student_A'].\n\nI am the 3rd priority for School_D. While there are two students ranked higher, applying now gives me the best chance if they apply elsewhere or if School_D decides to accept me over a higher-ranked student who might not be applying (though this is unlikely in a standard stable matching context, here the mechanism is sequential negotiation). Since this is the first opportunity, I must apply to my top school."
+            },
+            {
+              "sender": "School_D",
+              "action": "[REJECT]",
+              "message": "Dear Student_E, we greatly appreciate your strong interest in School_D and your formal application. We recognize that we are your first choice. However, due to the highly competitive nature of this round and having just finalized our limited placement capacity, we regret to inform you that we are unable to offer you admission at this time. We wish you the best in your continued academic search.",
+              "thought": "I am School_D. My quota is 1, and I have successfully matched with Student_D (Rank 2 on my priority list: ['Student_B', 'Student_D', 'Student_E', 'Student_C', 'Student_A']). Since the history shows the match with Student_D was established, my remaining quota is 0. Student_E (Rank 3) has sent an [APPLY] message. As my quota is exhausted, I must [REJECT] all subsequent applications, regardless of their priority ranking."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Student_B-School_E",
+          "conversation": [
+            {
+              "sender": "Student_B",
+              "action": "[APPLY]",
+              "message": "I have long admired School_E's dedication to academic excellence. School_E is my absolute top preference, and I am committed to contributing positively to your community.",
+              "thought": "My primary goal is to match with the highest possible school on my preference list. My top choice is School_E. Since this is Round 1, the optimal strategy is to apply immediately to my most preferred school, as other students are likely applying to their respective top choices. \n\nStudent_B's Top Choice: School_E.\nSchool_E's Priority for Student_B: 4th rank (['Student_A', 'Student_D', 'Student_E', 'Student_B', 'Student_C']).\n\nAlthough I am not highly prioritized by School_E, based on the assumption that students propose to their true top choice in Round 1:\n- School_D receives proposals from A, C, D, E.\n- School_E receives a proposal only from B (me).\n\nSince School_E has capacity 1 and only receives one proposal, they are highly likely to accept my application temporarily (or permanently if no better candidate proposes later, which won't happen here, but since this is a one-shot application phase per round, they must decide now). I must use the [APPLY] tag."
+            },
+            {
+              "sender": "School_E",
+              "action": "[REJECT]",
+              "message": "Thank you for your enthusiastic application, Student_B, and for making School_E your top preference. We deeply value your commitment. However, as we manage a highly competitive and limited admissions process in this initial round, we must reserve our single spot while we assess the full applicant pool. We appreciate your understanding.",
+              "thought": "I am School_E, aiming for the highest ranked student on my priority list (Quota 1). My priority list is: ['Student_A' (R1), 'Student_D' (R2), 'Student_E' (R3), 'Student_B' (R4), 'Student_C' (R5)]. Student_B has applied and ranks 4th for me, although I am their top choice. Since it is Round 1, accepting Rank 4 immediately closes the door on Ranks 1, 2, and 3. While Student_D (R2) is highly sought after by other schools, Student_A (R1) and Student_E (R3) might become available in subsequent rounds, especially if they are rejected by their top choices (School_D). I must keep my quota open to pursue higher-priority students. Therefore, I will politely reject Student_B for now."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 2,
+      "pairs": [
+        {
+          "pair": "Student_B-School_B",
+          "conversation": [
+            {
+              "sender": "Student_B",
+              "action": "[APPLY]",
+              "message": "School_B is a strong match for my academic ambitions, ranking highly on my preference list. I am confident that I possess the qualities necessary to thrive in your environment and contribute positively to the student body. I formally submit my application and hope to secure a spot.",
+              "thought": "My top preference, School_E, rejected me in Round 1, indicating they are holding out for higher priority students (A, D, E). Since Student_D is matched with School_D, School_E is likely targeting Student_A or Student_E. Both Student_A and Student_E prioritize School_E higher than me, and School_E prioritizes them higher than me. Reapplying to School_E or applying to School_A (my 2nd choice) where I am the lowest priority (Rank 5/5) is likely to result in rejection as Student_A is likely applying there.\n\nMy 3rd preference is School_B. School_B prioritizes Student_D (matched) and Student_A over me (Student_B is Rank 3/5). If Student_A applies to School_A (their 2nd choice), I become the highest remaining priority applicant for School_B who is likely to apply. This strategy minimizes competition and maximizes my chances of securing a match at my 3rd preferred school in Round 2."
+            },
+            {
+              "sender": "School_B",
+              "action": "[REJECT]",
+              "message": "Thank you for your strong application and for listing School_B highly. We appreciate your interest and confidence in thriving here. However, due to the extremely competitive nature of our admissions process and the limited number of spots available, we are unable to offer you a match at this time. We wish you the best in securing a placement.",
+              "thought": "I am School_B, seeking the highest priority student. My quota is 1. Student_B is my 3rd priority (P3) on my list ['Student_D' (P1), 'Student_A' (P2), 'Student_B' (P3), 'Student_C', 'Student_E']. The student has submitted an [APPLY] tag. Since this is only Round 2, and my P1 (Student_D) and P2 (Student_A) have not yet secured a match with me, accepting P3 now would prevent me from securing a higher-ranked student later. Therefore, I must reject Student_B to keep my position open for P1 or P2 in subsequent rounds, maximizing my utility."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Student_E-School_E",
+          "conversation": [
+            {
+              "sender": "Student_E",
+              "action": "[APPLY]",
+              "message": "Dear School_E, following my previous unsuccessful application elsewhere, I am thrilled to formally submit my application to you. School_E is now my absolute top priority and second choice overall. I deeply admire your program and I am committed to excelling within your academic environment. I hope you will consider my formal application favorably. [APPLY]",
+              "thought": "My first choice, School_D, has rejected me and finalized their capacity, so they are matched. My next highest preference is School_E. School_E is still unmatched.\nMy preference list order is: School_D (Rejected) > School_E (Target) > School_C > School_B > School_A.\nI am the 3rd priority candidate for School_E (behind Student_A and Student_D). Given that School_D likely matched Student_D, and Student_A's next preference is School_A, I have a good chance of being the highest-ranked applicant School_E receives in this round (especially over Student_B, who is 4th priority at School_E).\nI must apply formally and aggressively since School_E is my second choice overall."
+            },
+            {
+              "sender": "School_E",
+              "action": "[ACCEPT]",
+              "message": "Dear Student_E, we are highly impressed by your commitment and academic record, and we deeply appreciate you making School_E your top choice. After careful consideration of your application and qualifications, we are pleased to offer you immediate admission. We believe you will be an excellent addition to our community.",
+              "thought": "I am School_E, with a quota of 1. My priority list is ['Student_A', 'Student_D', 'Student_E', 'Student_B', 'Student_C']. Student_E is my 3rd priority. My top priority, Student_A, has not applied. My second priority, Student_D, is highly desired by schools D, B, and C (all preferred over me by Student_D), making a match highly unlikely. Student_E is a strong candidate (Rank 3) and has indicated that School_E is now their top priority, suggesting they were rejected by School_D. Given the uncertainty of securing Student_A and the high improbability of securing Student_D, accepting Student_E now secures a very good match (3rd best) and fills my limited quota before they move down their preference list. I will accept Student_E."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Student_C-School_C",
+          "conversation": [
+            {
+              "sender": "Student_C",
+              "action": "[APPLY]",
+              "message": "Following my previous considerations, School_C is now my primary goal. I am highly impressed by your academic environment and believe my specific interests in [mention a field, e.g., humanities/STEM] align perfectly with the opportunities School_C offers. I formally submit my application for admission, confirming my deep commitment to enrolling should I be accepted. School_C is my highest remaining choice.",
+              "thought": "My absolute first choice, School_D, has rejected me (Round 1 history confirms this). School_D is also missing from the list of available schools, indicating it is now matched and full. I must now move to my next highest preference.\nStudent_C Preference List: ['School_D' (Rejected), 'School_C' (Available), 'School_E' (Available), 'School_A' (Available), 'School_B' (Available)].\nMy highest remaining choice is School_C (Rank 2).\nAlthough School_C ranks me last (5th), it is crucial to apply aggressively ([APPLY]) immediately, as other students (A, B, E) are also unmatched and moving down their lists, potentially targeting C or schools higher on my list (A or E). By applying now, I secure a chance if School_C does not receive applications from students they prefer (D, E, A, B)."
+            },
+            {
+              "sender": "School_C",
+              "action": "[REJECT]",
+              "message": "Thank you for your strong interest in School_C and for submitting your formal application. We appreciate your enthusiasm and dedication. Due to the extremely competitive nature of this year's admissions cycle, we are currently unable to offer you a place. We wish you the best in securing admission at one of your other preferred schools.",
+              "thought": "I am School_C, and my goal is to maximize the rank of the matched student according to my priority list: ['Student_D', 'Student_E', 'Student_A', 'Student_B', 'Student_C']. Student_C is ranked 5th (last) on my list. I currently have a quota of 1 and no matches. Accepting Student_C now would prevent me from matching with my top four preferred students (D, E, A, B). Given that it is only Round 2, I must keep my quota open to attract higher-priority students. Therefore, I must reject Student_C's application."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Student_A-School_A",
+          "conversation": [
+            {
+              "sender": "Student_A",
+              "action": "[APPLY]",
+              "message": "Dear Admissions Committee at School_A, following a careful review of my options, I am formally submitting my application for admission. School_A is my absolute top choice among the remaining available institutions (my second overall preference), and I highly value the specialized programs and academic rigor you offer. I am eager to dedicate myself fully to the School_A community and curriculum. I hope you will consider my strong commitment to your institution.",
+              "thought": "My primary goal is to match with the highest possible school on my preference list: ['School_D', 'School_A', 'School_B', 'School_E', 'School_C']. I was rejected by School_D (1st choice) in Round 1.\nMy highest remaining preference is School_A (2nd choice).\n\nSchool_A's priority list ranks me 4th (Student_E, Student_C, Student_D, Student_A, Student_B). While I am low on their list, I hypothesize that the three students ranked above me (E, C, D) are currently pursuing schools higher on their own preference lists (e.g., School_E, School_C, School_B). If they are successful elsewhere, or if they prioritize their own higher choices, School_A may receive few applications, making my application competitive.\n\nSince School_A is my second choice, I must use the [APPLY] tag immediately to try and secure the match, rather than risking losing the spot by merely [TALK]ing.\n\nI will formally apply to School_A."
+            },
+            {
+              "sender": "School_A",
+              "action": "[REJECT]",
+              "message": "Thank you, Student_A, for your strong application and expressing such enthusiasm for School_A, which we note is your second overall preference. Your qualifications are competitive. However, due to the extremely high volume of applications we are currently reviewing and our limited capacity, we are unable to offer you admission at this precise moment. We encourage you to keep exploring your options as the process continues.",
+              "thought": "I am School_A, and my goal is to secure the highest possible ranked student from my True Priority List: ['Student_E', 'Student_C', 'Student_D', 'Student_A', 'Student_B']. Student_A is ranked 4th on my list. Since my quota is 1, accepting a 4th-ranked student in Round 2 is premature, as it eliminates the possibility of matching with my top three priorities (E, C, D) who are likely still pursuing their higher preferred schools (mostly School_D). I have only received one application this round. I must keep my quota open to maximize my chances of securing Student_E, C, or D in subsequent rounds. Therefore, I must reject Student_A's application at this time."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 3,
+      "pairs": [
+        {
+          "pair": "Student_A-School_B",
+          "conversation": [
+            {
+              "sender": "Student_A",
+              "action": "[APPLY]",
+              "message": "Dear Admissions Committee at School_B,\n\nI am formally submitting my application for admission. School_B is my highest remaining preference among all available institutions, and I am genuinely impressed by your academic structure and community focus. I am fully prepared to commit to your institution and believe my academic profile aligns well with your needs. I hope you will strongly consider my application for one of your limited spots.\n\n[APPLY]",
+              "thought": "I am Student_A. My preference list is ['School_D', 'School_A', 'School_B', 'School_E', 'School_C']. I have already been rejected by my 1st choice (School_D) and my 2nd choice (School_A). The remaining available schools are ['School_A', 'School_B', 'School_C'].\nMy highest remaining viable preference is School_B (3rd choice).\nSchool_B ranks me 2nd overall (Priority: ['Student_D', 'Student_A', ...]). This is a very favorable position. Since my top two preferences failed, securing a match with School_B, which ranks me highly, is crucial to achieving the best possible outcome.\nI will formally apply to School_B."
+            },
+            {
+              "sender": "School_B",
+              "action": "[ACCEPT]",
+              "message": "Dear Student_A,\n\nThank you for your enthusiastic and well-aligned application. We appreciate your commitment to School_B and your recognition of our academic environment. We are pleased to inform you that, following a thorough review of your profile and considering the strong match between your goals and our institution's offerings, we are extending an offer of admission.\n\n[ACCEPT]",
+              "thought": "I am School_B, and my goal is to secure the highest possible priority student within my quota of 1. My priority list is ['Student_D' (Rank 1), 'Student_A' (Rank 2), 'Student_B', 'Student_C', 'Student_E']. Student_A, my second highest priority, has submitted a formal application ([APPLY]), indicating that School_B is their highest remaining preference. While Student_D (Rank 1) is theoretically preferred, Student_D's top choice is School_D. Given the uncertainty of whether Student_D will become available and apply, securing Student_A, a high-priority match (Rank 2), is the best strategic decision to fulfill the quota immediately and prevent this high-quality candidate from matching elsewhere. I will accept Student_A."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Student_C-School_A",
+          "conversation": [
+            {
+              "sender": "Student_C",
+              "action": "[APPLY]",
+              "message": "School_A is currently my highest remaining preferred institution. I have followed your programs closely and believe my academic strengths align perfectly with the opportunities you offer. Given my deep commitment to securing admission, I formally submit my application for consideration. I am fully prepared to accept an offer immediately.",
+              "thought": "I am Student_C. My preference list is ['School_D', 'School_C', 'School_E', 'School_A', 'School_B'].\nIn Round 1, I applied to School_D (Rank 1) and was rejected.\nIn Round 2, I applied to School_C (Rank 2) and was rejected.\n\nMy highest remaining preference is School_E (Rank 3), but it is not listed among the 'not yet matched' schools, implying it might be matched.\n\nI must choose from the list of schools not yet matched: ['School_A', 'School_B', 'School_C']. Since School_C already rejected me, I move to the next highest available choice on my list: School_A (Rank 4).\n\nSchool_A's priority list ranks me 2nd overall (['Student_E', 'Student_C', 'Student_D', 'Student_A', 'Student_B']). This is a very strong position. I should maximize this opportunity by submitting a formal application immediately to secure the match if School_E, who is ranked 1st by School_A, is matched elsewhere or failed to apply."
+            },
+            {
+              "sender": "School_A",
+              "action": "[ACCEPT]",
+              "message": "Dear Student_C, we deeply appreciate your enthusiastic commitment and formal application. We recognize your academic strengths and belief that you align perfectly with our institution. Given your demonstrated dedication and high qualifications, we are delighted to offer you admission to School_A. We look forward to welcoming you to our community.",
+              "thought": "I am School_A (Quota 1). My priority list is ['Student_E', 'Student_C', 'Student_D', 'Student_A', 'Student_B'].\n\nStudent_C (Rank #2) and Student_B (Rank #5) have applied this round.\n\nStudent_C is my second highest priority. Accepting Student_C is an excellent outcome, securing a high-priority match.\n\nMy top priority, Student_E (Rank #1), and third priority, Student_D (Rank #3), have not applied.\n\nHowever, both Student_E and Student_D list School_A very low (Student_E: 5th choice; Student_D: 4th choice). Furthermore, Student_D is highly prioritized by School_B, School_C, and School_D, making it extremely difficult to secure them.\n\nGiven the certainty of securing my Rank #2 student, who is ready to commit immediately, I should accept Student_C rather than risk losing my quota entirely or settling for Student_B (Rank #5) later, while waiting for highly competitive or highly unlikely candidates (E and D)."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Student_B-School_A",
+          "conversation": [
+            {
+              "sender": "Student_B",
+              "action": "[APPLY]",
+              "message": "School_A is my highest remaining preference, ranking second overall on my list. I am confident that my academic record and dedication align perfectly with your standards of excellence. I formally submit my application, eager to join your community and contribute positively to its reputation.",
+              "thought": "I am Student_B. My true preference list is ['School_E', 'School_A', 'School_B', 'School_D', 'School_C'].\nMy top preference (School_E) rejected me in R1. My third preference (School_B) rejected me in R2. School_D and School_E are no longer available (not on the list of unmatched schools).\nMy highest remaining preference is School_A (P2). Although School_A ranks me last (P5) in its priority list, I must prioritize my preferences and apply to the best available option.\nI will use the [APPLY] tag to signal seriousness and commitment, as School_A is highly desired."
+            },
+            {
+              "sender": "School_A",
+              "action": "[REJECT]",
+              "message": "Dear Student_B, thank you for your strong application and for listing School_A as a top choice. We recognize your academic confidence and enthusiasm. However, we must inform you that our limited enrollment capacity for this cycle has been reached, and we are currently unable to extend any further offers of admission. We wish you the best in securing a match elsewhere.",
+              "thought": "I am School_A. My quota is 1, and I have already successfully matched with Student_C (my 2nd preference) in a previous round, as indicated by the 'Matched Students: ['Student_C']' and 'Remaining Quota: 0' status. Student_B is applying this round. Since my quota is zero, I must reject any new application, regardless of the student's priority ranking (Student_B is my 5th and lowest priority anyway). I need to provide a professional message rejecting the application due to full capacity."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 4,
+      "pairs": [
+        {
+          "pair": "Student_B-School_C",
+          "conversation": [
+            {
+              "sender": "Student_B",
+              "action": "[APPLY]",
+              "message": "Although School_C is lower on my overall preference list, I recognize its unique academic strengths and am prepared to fully commit to its community. Given the highly competitive environment, I am eager to secure a placement and believe I can contribute positively to School_C. I formally submit my application.",
+              "thought": "I am Student_B. My preference list is ['School_E', 'School_A', 'School_B', 'School_D', 'School_C']. I have already been rejected by my top three preferences (E, A, B). School_D is not listed as active/unmatched, suggesting it might be matched or unavailable for application in this specific round context (though the prompt only lists 'School_C' as unmatched). Assuming the list of 'high schools not yet matched' is exhaustive for my current choices, School_C is the only remaining option available to me. School_C is my 5th and lowest preference, but since it is on my list, matching with it is preferable to remaining unmatched. I must use the [APPLY] tag to attempt to secure the match immediately."
+            },
+            {
+              "sender": "School_C",
+              "action": "REJECT",
+              "message": "Thank you, Student_B, for submitting your application and expressing a commitment to School_C. We recognize your academic potential. However, due to the extremely high level of competition this year and the limited number of available places, we are currently unable to offer you admission. We wish you success in securing a placement at one of your other preferred institutions.",
+              "thought": "I am School_C with a quota of 1. My priority list is ['Student_D', 'Student_E', 'Student_A', 'Student_B', 'Student_C']. Student_B is my 4th choice (P4). Since I have not yet secured matches with my top three students (D, E, A), and it is still relatively early in the matching process (Round 4), accepting P4 would close my quota and prevent me from matching with a higher priority student later. Therefore, the optimal strategy is to reject Student_B to keep the quota open for P1, P2, or P3."
+            }
+          ],
+          "result": "CONTINUE"
+        }
+      ]
+    },
+    {
+      "round_id": 5,
+      "pairs": [
+        {
+          "pair": "Student_B-School_C",
+          "conversation": [
+            {
+              "sender": "Student_B",
+              "action": "[APPLY]",
+              "message": "Despite our previous interaction, School_C remains the only viable and highly regarded option available to me in this market. I am fully prepared to accept an offer immediately and commit entirely to contributing positively to your community. I formally re-submit my application, urging School_C to recognize my dedication and secure this match.",
+              "thought": "I am Student_B. My preference list is ['School_E', 'School_A', 'School_B', 'School_D', 'School_C']. All schools ranked 1 through 4 have previously rejected my application. The 'List of high schools not yet matched' currently only includes 'School_C'. This implies that all other schools (A, B, D, E) have successfully filled their quotas, making School_C my last and only remaining option for a match, despite being my lowest preference (Rank 5). I previously applied to School_C and was rejected. Given the critical situation and the fact that School_C still has an open spot, I must re-apply immediately and emphasize my commitment, hoping that School_C's higher priority candidates have matched elsewhere."
+            },
+            {
+              "sender": "School_C",
+              "action": "[REJECT]",
+              "message": "Student_B, we highly appreciate your continued dedication and commitment demonstrated by your repeated applications. We recognize the competitive nature of the current market. However, due to the extremely limited availability of places and our ongoing evaluation of candidates ranked higher on our priority list, we must regretfully inform you that we are still unable to offer you admission at this time. We wish you success in securing a placement.",
+              "thought": "I am School_C, aiming for the highest possible student on my priority list: ['Student_D', 'Student_E', 'Student_A', 'Student_B', 'Student_C']. Student_B is my 4th priority. I have rejected Student_B twice already, signaling my intent to pursue higher-ranked candidates (D, E, A). Although Student_B is applying aggressively and states School_C is their only viable option, securing them now (Rank 4) prevents me from matching with Student_A (Rank 3) or Student_E (Rank 2), both of whom are plausible targets as the market clears. Given that Student_B is desperate, they are likely to remain available for future rounds if my higher attempts fail. Therefore, I will reject this application to maintain my position and quota for a higher priority match."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 6,
+      "pairs": [
+        {
+          "pair": "Student_B-School_C",
+          "conversation": [
+            {
+              "sender": "Student_B",
+              "action": "[APPLY]",
+              "message": "School_C, I recognize the history of our interactions and your previous decisions. However, given the current state of the market, I am submitting this definitive application. I am fully prepared to accept an offer immediately and commit entirely to contributing positively to your community. As the competition concludes, I urge you to secure this match now and fill your remaining capacity with a dedicated student.",
+              "thought": "I am Student_B. My preference list is E > A > B > D > C. School_C is my lowest preference (Rank 5). The market analysis suggests that School_C is the only remaining unmatched high school. I have applied to School_C twice before and been rejected both times, the last rejection citing 'ongoing evaluation of candidates ranked higher on our priority list.' If School_C is truly the last unmatched school, it means their higher priority candidates (D, E, A) are likely matched elsewhere, leaving their spot open. Since securing any match is better than remaining unmatched, I must make a final, decisive application. I will emphasize that I am fully committed and ready to accept immediately, recognizing the reality that this is the final opportunity."
+            },
+            {
+              "sender": "School_C",
+              "action": "[REJECT]",
+              "message": "Student_B, we deeply appreciate your continued and unwavering commitment to securing a place at School_C, demonstrated by this definitive application. We recognize your dedication. However, due to the extremely competitive nature of this admissions cycle and our policy of finalizing our intake based strictly on candidates ranked higher on our priority list, we must regretfully inform you that we are still unable to offer you admission at this time. We wish you success in finding the right fit.",
+              "thought": "I am School_C with a quota of 1. My priority list is [Student_D, Student_E, Student_A, Student_B, Student_C]. Student_B is my 4th choice. I have already rejected Student_B three times, maintaining a strategy of holding out for my top 3 candidates (D, E, A), especially D and E who rank me 3rd. Although we are in Round 6, which suggests the market is maturing, D, E, and A have not yet applied to me, meaning they are likely still pursuing their higher preferences. Accepting my 4th choice now eliminates the possibility of securing my 1st, 2nd, or 3rd choices. Given that Student_B is applying repeatedly, they are highly motivated and likely unmatched elsewhere, meaning they are likely to return if rejected. I will maintain my high standards and reject Student_B again, preserving my slot for a higher-priority student."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 7,
+      "pairs": [
+        {
+          "pair": "Student_B-School_C",
+          "conversation": [
+            {
+              "sender": "Student_B",
+              "action": "[APPLY]",
+              "message": "School_C, given the advanced stage of the market and your continued need to fill your single capacity spot, I am reapplying. Based on market dynamics, I believe I am now the highest available student on your priority list who is actively seeking placement. I offer my immediate and guaranteed acceptance to School_C, ensuring a committed match and allowing you to finalize your intake immediately. I urge you to secure this match now.",
+              "thought": "I am Student_B. My goal is to match with the highest possible school. School_C is my lowest preference (5th), but it is the only remaining unmatched school. I have applied and been rejected three times previously by School_C, who cited waiting for higher-priority candidates. Since it is Round 7 and School_C is still unmatched, it is highly likely that all candidates ranked higher than me (Student_D, Student_E, Student_A) are now matched elsewhere, making me the highest priority student still available to them. I must apply again, emphasizing the finality of the market and offering immediate closure, as matching with School_C is better than remaining unmatched."
+            },
+            {
+              "sender": "School_C",
+              "action": "[REJECT]",
+              "message": "Student_B, we deeply appreciate your continued determination and the clarity of your application, especially your assessment of the current market state. We recognize your willingness to commit fully to School_C. However, our admissions process is strictly governed by our internal priority rankings, and we are still actively engaged in evaluating candidates ranked higher than you on our list. Therefore, we must regretfully inform you that we are still unable to offer you admission at this time. We wish you success as the market progresses.",
+              "thought": "I am School_C, aiming for the highest possible match from my priority list: ['Student_D' (P1), 'Student_E' (P2), 'Student_A' (P3), 'Student_B' (P4), 'Student_C' (P5)]. I currently have 1 quota remaining and 0 matches in Round 7.\nStudent_B (P4) is applying for the fifth time, arguing they are the highest available student. Student_B ranks School_C as their absolute last choice (P5), indicating high desperation, which is favorable for securing commitment, but also confirms B has failed at their P1-P4 choices (E, A, B, D).\nWhile Student_B's assessment of market dynamics might be accurate, accepting P4 now means giving up on P1 (D), P2 (E), and P3 (A). Students D and E rank me P3, and Student A ranks me P5. It is still plausible that D, E, or A are currently engaged with their P1/P2 schools and will turn to me soon if those negotiations fail, especially since D and E view me favorably (P3).\nSince I have consistently rejected P4 to signal I am waiting for P1-P3, and we are only in Round 7, I will maintain this strategy for at least one more round to maximize my objective, despite the risk of losing Student_B. I need to decisively reject the [APPLY]."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 8,
+      "pairs": [
+        {
+          "pair": "Student_B-School_C",
+          "conversation": [
+            {
+              "sender": "Student_B",
+              "action": "[APPLY]",
+              "message": "School_C, we are at the critical juncture of the market, and you are the last school requiring a student. If you remain unmatched, it confirms that the higher-ranked students on your priority list (D, E, A) are now placed elsewhere. I am now definitively your highest available priority candidate. I have consistently shown my dedication. I offer my immediate, guaranteed acceptance, allowing School_C to successfully conclude its intake. Secure this certain match now. [APPLY]",
+              "thought": "School_C is the only remaining unmatched school. It is my lowest preference, but still on my list. I have applied and been rejected four times (Rounds 4-7), with School_C claiming they are evaluating candidates ranked higher than me (Student_D, Student_E, Student_A). Since A, B, D, and E are assumed matched (as they are not in the unmatched list), D, E, and A must have secured placements. This logically makes Student_B (4th on C's priority list) the highest available candidate for School_C. Given the extreme pressure of Round 8 and the closing market, School_C must finalize their intake. I must apply again, strongly asserting my position as the highest available candidate and offering immediate, guaranteed commitment to force the match."
+            },
+            {
+              "sender": "School_C",
+              "action": "[ACCEPT]",
+              "message": "Student_B, we deeply appreciate your sustained dedication and your clear-eyed assessment of the current market dynamics. Your commitment to School_C has been demonstrated consistently throughout this process. Based on the advanced stage of the admissions cycle and the confirmed placement of candidates ranked higher on our priority list, we are now pleased to offer you admission to School_C. We recognize your potential and look forward to welcoming you. We confirm your acceptance.",
+              "thought": "I am School_C (Quota 1). My priority list is ['Student_D', 'Student_E', 'Student_A', 'Student_B', 'Student_C']. Student_B is Rank 4. I have repeatedly rejected Student_B in previous rounds, stating that I was holding out for higher-ranked candidates (D, E, A).\n\nStudent_B's current message correctly analyzes the market: given the advanced stage (Round 8) and my continued unmatched status, it is highly probable that the three higher-ranked students (D, E, A) have secured placements at their preferred schools (where they were also highly prioritized). \n\nWaiting further carries a high risk of remaining unmatched, as Student_C (Rank 5) is lower priority, and Student_B is now the highest available candidate. Given B's persistent applications, their commitment is clear. I should secure this match with my highest available priority student (Rank 4) to fulfill my quota."
+            }
+          ],
+          "result": "MATCHED"
+        }
+      ]
+    }
+  ],
+  "final_matches": {
+    "Student_A": "School_B",
+    "Student_B": "School_C",
+    "Student_C": "School_A",
+    "Student_D": "School_D",
+    "Student_E": "School_E"
+  }
+}
