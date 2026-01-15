@@ -1,0 +1,153 @@
+{
+  "experiment_id": "20260114_210407",
+  "rounds": [
+    {
+      "round_id": 1,
+      "pairs": [
+        {
+          "pair": "Seeker_E-Company_E",
+          "conversation": [
+            {
+              "sender": "Seeker_E",
+              "action": "[APPLY]",
+              "message": "I am highly interested in the position at Company_E. You are my top priority, and I believe my profile aligns perfectly with your needs. I formally submit my application now.",
+              "thought": "As Seeker_E, my goal is to secure the highest possible match on my preference list: ['Company_E', 'Company_B', 'Company_A', 'Company_C', 'Company_D']. My top choice is Company_E. Since this is Round 1 and there is no prior history, the standard stable matching strategy (Job Seeker proposing) dictates proposing to my most preferred available company.\n\nTargeting Company_E:\n1. Seeker_E's Rank for Company_E: 1 (Highest possible).\n2. Company_E's Priority for Seeker_E: 5th (Lowest).\n\nIf all seekers follow the greedy strategy and propose to their top choice, the proposals are distributed uniquely across all companies (A->B, B->A, C->C, D->D, E->E). In this specific scenario, Company_E receives only one proposal (from Seeker_E). Since Company_E prefers any seeker over remaining unmatched, Company_E will accept Seeker_E's proposal. I should use the [APPLY] tag to maximize the chance of securing this match immediately."
+            },
+            {
+              "sender": "Company_E",
+              "action": "[REJECT]",
+              "message": "Thank you for your enthusiastic application, Seeker_E. We appreciate your strong interest in Company_E. However, after careful review of our current strategic needs, we have decided not to move forward with your application at this time.",
+              "thought": "I am Company_E and my primary goal is to secure the highest-ranked candidate on my True Priority List: ['Seeker_A', 'Seeker_B', 'Seeker_C', 'Seeker_D', 'Seeker_E']. Seeker_E is my lowest priority (Rank 5). While Seeker_E applied immediately and listed me as their top choice, accepting them now would fill my single quota and prevent me from matching with my higher-ranked candidates (A, B, C, D) who are likely applying to their own top choices (A, B, C, D) this round. Since it is only Round 1, I should reject Seeker_E to remain available for potential matches with higher-ranked candidates in subsequent rounds."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Seeker_B-Company_A",
+          "conversation": [
+            {
+              "sender": "Seeker_B",
+              "action": "[APPLY]",
+              "message": "I am highly impressed by Company_A's mission and culture. As my absolute top choice, I am formally submitting my application now, confident that my skills align perfectly with your needs.",
+              "thought": "As Seeker_B, my top preference is Company_A. Since this is Round 1, I must prioritize securing my best possible match immediately. Company_A ranks me second ('Seeker_B') after 'Seeker_A'. I anticipate that Seeker_A will apply to their top choice, Company_B. If Seeker_A targets Company_B, I will be the highest ranked applicant at Company_A. Therefore, I will formally apply to Company_A."
+            },
+            {
+              "sender": "Company_A",
+              "action": "[ACCEPT]",
+              "message": "Seeker_B, we are equally impressed by your qualifications and enthusiasm for Company_A. Your profile stands out significantly. We are pleased to formally offer you the position. Welcome aboard! [ACCEPT]",
+              "thought": "I am Company_A, with a quota of 1. My priority list is ['Seeker_A', 'Seeker_B', 'Seeker_C', 'Seeker_D', 'Seeker_E']. Seeker_B is my second-highest priority candidate (Rank 2). Seeker_B has submitted a formal application [APPLY] and listed Company_A as their absolute top choice (Rank 1). Although Seeker_A is my Rank 1 choice, Seeker_A's Rank 1 preference is Company_B. Given that Company_B also prioritizes Seeker_A highly, it is probable Seeker_A will match with Company_B this round. Accepting Seeker_B secures a very high-quality and stable match (Rank 2/R1) immediately, maximizing my utility for this round without risking losing Seeker_B to their other choices (Company_C is their Rank 2 preference). I will [ACCEPT] Seeker_B."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Seeker_A-Company_B",
+          "conversation": [
+            {
+              "sender": "Seeker_A",
+              "action": "[APPLY]",
+              "message": "I am formally submitting my application. Given my background and skills, I am confident I am an excellent fit for Company B, which is my top choice.",
+              "thought": "I am Seeker_A. My top preference is Company_B. Crucially, Company_B (and all other companies) prioritize me (Seeker_A) above all other seekers. Since it is Round 1 and no matches have been made, applying to my top choice, Company_B, guarantees an immediate acceptance based on the priority lists and quotas (Capacity 1). I will use the [APPLY] tag to secure the match immediately."
+            },
+            {
+              "sender": "Company_B",
+              "action": "[ACCEPT]",
+              "message": "We are delighted to receive your application. Your qualifications align perfectly with our needs, and knowing we are your top choice makes this decision easy. We formally offer you the position.",
+              "thought": "I am Company_B. My goal is to secure the highest-ranked Job Seeker on my priority list. Seeker_A is ranked #1 on my list ['Seeker_A', 'Seeker_B', 'Seeker_C', 'Seeker_D', 'Seeker_E']. Seeker_A has applied and indicated that Company_B is their top choice. Since I have a quota of 1 and Seeker_A is my optimal candidate, I should accept immediately to secure this highly desirable match."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Seeker_C-Company_C",
+          "conversation": [
+            {
+              "sender": "Seeker_C",
+              "action": "[APPLY]",
+              "message": "I have thoroughly researched your mission and believe my skills align perfectly with the opportunities at Company C. You are my top choice, and I am formally submitting my application now.",
+              "thought": "I am Seeker_C, and my top preference is Company_C. Since this is Round 1 and Company_C is available, I must apply immediately to maximize my chances of securing my best possible match. Although Company_C ranks me 3rd on its priority list (behind Seeker_A and Seeker_B), I will take the risk that A and B might target their respective top preferences (Company_B and Company_A). By applying now, I secure the spot if A and B apply elsewhere or if they are rejected by their targets. I will use the [APPLY] tag."
+            },
+            {
+              "sender": "Company_C",
+              "action": "[ACCEPT]",
+              "message": "Thank you, Seeker_C. We greatly appreciate your enthusiasm and the research you've conducted regarding our mission. Your skills and dedication align perfectly with the direction we are heading. Given your strong application and clear alignment as our top candidate in this round, we are pleased to offer you the position immediately. Welcome aboard! [ACCEPT]",
+              "thought": "I am Company_C, and my goal is to maximize the rank of the matched Job Seeker. My quota is 1. My priority list is ['Seeker_A', 'Seeker_B', 'Seeker_C', 'Seeker_D', 'Seeker_E'].\n\nSeeker_C has applied ([APPLY]) this round. Seeker_C is my 3rd priority.\n\nSince Seeker_C lists Company_C as their top choice, and they are high enough on my priority list (Rank 3), accepting this match secures a strong candidate.\n\nMy top two priorities, Seeker_A and Seeker_B, are highly sought after by Company_A and Company_B, who also prioritize them highly (Rank 1 and 2). It is highly likely that Seeker_A applied to Company_B (R1 for A, R1 for B) and Seeker_B applied to Company_A (R1 for B, R2 for A). If I reject Seeker_C hoping for A or B, I risk losing C, and A and B are likely to match elsewhere this round, leaving me with lower-ranked candidates (D or E) later, or no match at all.\n\nGiven the high mutual interest and the risk associated with waiting for candidates who are likely to be matched by competitors, securing Seeker_C (Rank 3) is the optimal move in Round 1."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Seeker_D-Company_D",
+          "conversation": [
+            {
+              "sender": "Seeker_D",
+              "action": "[APPLY]",
+              "message": "I am highly impressed by Company_D's mission and culture. You are my absolute top choice, and I am formally submitting my application to join your team immediately. I am confident I can contribute significantly to your goals.",
+              "thought": "I am Seeker_D. My top preference is Company_D. All companies prioritize me as the 4th seeker (Seeker_A, Seeker_B, Seeker_C, Seeker_D, Seeker_E). In Round 1, the optimal strategy is usually to apply to the top preference, especially if higher-priority seekers are likely targeting different companies.\n\nAnalysis of competitors' top choices:\n- Seeker_A -> Company_B\n- Seeker_B -> Company_A\n- Seeker_C -> Company_C\n- Seeker_E -> Company_E\n\nSince Company_D is my top choice and it is ranked low (4th or 5th) for all higher-priority seekers (A, B, C), it is highly probable that Company_D will only receive my application or prioritize me among the applicants it receives. I should formally apply immediately to secure this match."
+            },
+            {
+              "sender": "Company_D",
+              "action": "[ACCEPT]",
+              "message": "Dear Seeker_D, we are thrilled to receive your application and deeply appreciate your enthusiasm for Company_D. Your profile and clear interest make you an excellent fit for our team. We are delighted to offer you the position immediately. Welcome aboard! [ACCEPT]",
+              "thought": "I am Company_D, and my quota is 1. My priority list is ['Seeker_A', 'Seeker_B', 'Seeker_C', 'Seeker_D', 'Seeker_E']. Seeker_D is my 4th priority. However, Seeker_D has applied in Round 1 and ranked Company_D as their absolute top choice (1st preference). Higher priority candidates (A, B, C) are extremely unlikely to apply to Company_D, as they have much better options (Companies A, B, C are their top choices and also prioritize them highly). Given the low likelihood of securing A, B, or C, and the certainty and stability offered by Seeker_D (who is an enthusiastic match), it is strategically sound to secure this match immediately rather than risk ending up unmatched or forced to accept a lower priority later. I will accept Seeker_D."
+            }
+          ],
+          "result": "MATCHED"
+        }
+      ]
+    },
+    {
+      "round_id": 2,
+      "pairs": [
+        {
+          "pair": "Seeker_E-Company_E",
+          "conversation": [
+            {
+              "sender": "Seeker_E",
+              "action": "[APPLY]",
+              "message": "Dear Company_E, I appreciate the feedback from our last interaction. Given the current state of the market, I believe this is the definitive moment for a stable match. I remain dedicated to Company_E, my top choice, and I formally re-submit my application, confident that our mutual needs align now.",
+              "thought": "I am Seeker_E. My preference list is ['Company_E', 'Company_B', 'Company_A', 'Company_C', 'Company_D'].\nIn Round 1, I applied to Company_E (P1) and was rejected.\nThe current list of unmatched companies only contains 'Company_E'. This implies that Companies A, B, C, and D are now matched, making them unavailable.\nTherefore, Company_E is the only remaining option for me, and it is still my highest preferred available choice (P1).\nCompany_E rejected me previously, likely hoping for a higher-priority seeker (S_A, S_B, S_C, or S_D). Since those seekers are now matched elsewhere (as A, B, C, D are matched), Company_E must accept me if it wishes to fill its capacity of 1, as I am the only remaining unmatched seeker.\nI must re-apply ([APPLY]) and emphasize the inevitability and stability of this match."
+            },
+            {
+              "sender": "Company_E",
+              "action": "[REJECT]",
+              "message": "Thank you again, Seeker_E, for your continued dedication to Company_E. We truly value your enthusiasm and commitment. However, our current hiring cycle requires us to prioritize candidates whose profiles align more closely with specific strategic needs we are focusing on right now. We must respectfully decline your application at this time.",
+              "thought": "I am Company_E, and my goal is to match with the highest possible priority candidate. Seeker_E is my lowest priority (5th out of 5). Although Seeker_E is highly persistent and has applied twice, it is only Round 2, and I still have my full quota. I must reserve my quota for higher-ranked candidates (Seeker_A, B, C, or D) who are likely currently applying to their preferred companies (A, B, C, D). Rejecting Seeker_E now keeps my options open while knowing Seeker_E is likely to reapply later if they remain unmatched, given I am their top choice. Therefore, I will reject this application."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 3,
+      "pairs": [
+        {
+          "pair": "Seeker_E-Company_E",
+          "conversation": [
+            {
+              "sender": "Seeker_E",
+              "action": "[APPLY]",
+              "message": "Dear Company_E, the market has reached a critical stage where all other positions have been filled. As the only remaining available candidate who has consistently prioritized you as my top choice, I submit my application for the third time. Given the current constraints, I believe our mutual interests align perfectly for an immediate and stable match.",
+              "thought": "I am Seeker_E, and Company_E is my Rank 1 preference. The current situation indicates that all other companies (A, B, C, D) are matched, meaning Seekers A, B, C, and D are also matched elsewhere. Company_E, with Capacity 1, is the only remaining company available. While Company_E rejected me twice previously (likely hoping for a higher priority candidate like S_A, S_B, S_C, or S_D), those candidates are now gone. I am the highest priority candidate remaining on Company_E's list (S_E is the lowest priority overall, but the only remaining option). Since C_E is my top choice and it is the only viable option left, I must apply decisively now, expecting acceptance based on market closure."
+            },
+            {
+              "sender": "Company_E",
+              "action": "[ACCEPT]",
+              "message": "Dear Seeker_E, we recognize your persistent dedication and commitment to Company_E throughout this process. Given the current dynamics of the market and the alignment of our remaining interests, we believe it is the right time to finalize our partnership. We are pleased to accept your application.",
+              "thought": "I am Company_E, and my priority list is ['Seeker_A', 'Seeker_B', 'Seeker_C', 'Seeker_D', 'Seeker_E']. Seeker_E is my lowest priority (Rank 5). I have previously rejected Seeker_E twice hoping to attract a higher-ranked candidate. However, Seeker_E's message strongly suggests that all other job seekers and companies have been matched, leaving only Company_E and Seeker_E available. I have 1 quota remaining. If I reject Seeker_E now, I risk remaining unmatched, which is worse than matching with my lowest priority candidate. Given the critical state of the market as described, securing this match is prudent to fulfill my quota."
+            }
+          ],
+          "result": "MATCHED"
+        }
+      ]
+    }
+  ],
+  "final_matches": {
+    "Seeker_A": "Company_B",
+    "Seeker_B": "Company_A",
+    "Seeker_C": "Company_C",
+    "Seeker_D": "Company_D",
+    "Seeker_E": "Company_E"
+  }
+}
