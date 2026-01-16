@@ -64,129 +64,195 @@ def run_da_algorithm(seekers_prefs, companies_prefs, quotas):
                     
     return matches
 
-def run_eada_algorithm(seekers_prefs, companies_prefs, quotas):
+import copy
+
+def run_eada_enforced(seekers_prefs, companies_prefs, quotas):
     """
-    Efficiency-Adjusted Deferred Acceptance (EADA) Algorithm (Enforced Waiver).
+    EADA Enforced Algorithm (Corrected Version)
     
-    Iteratively runs DA, identifies 'blocking' students (who caused rejection but moved away),
-    removes those blocking applications from their lists, and re-runs DA.
+    テキストの定義に基づき以下の修正を行っています:
+    1. Part 1 (DA) をラウンド制 (Simultaneous) で実行し、正確なステップ数を記録する。
+    2. Part 2 (Waiver) において、'Last Step' (最も遅いステップ) のブロッキング求職者のみを対象にする。
     """
-    # Create a deep copy of seekers' preferences because we will modify them
+    # 求職者の希望リストのディープコピーを作成（変更を加えるため）
     current_seekers_prefs = copy.deepcopy(seekers_prefs)
     
-    while True:
-        # 1. Run DA with Logging to track rejections
-        trace_log, da_matches = _run_da_with_logging(current_seekers_prefs, companies_prefs, quotas)
+    # 安全のためのループ上限
+    max_loops = 100 
+    loop_count = 0
+    
+    while loop_count < max_loops:
+        loop_count += 1
         
-        # 2. Identify Blocking Job Seekers
-        blocking_instances = [] 
+        # 1. Part 1: ラウンド制DAを実行し、ログとマッチング結果を取得
+        trace_log, da_matches = _run_simultaneous_da(current_seekers_prefs, companies_prefs, quotas)
         
-        # Map final assignments for easy lookup
-        final_assignments = {} 
+        # 最終的な割り当てを作成（Discrepancyチェック用）
+        final_assignments = {}
         for c, s_list in da_matches.items():
             for s in s_list:
                 final_assignments[s] = c
-                
-        # Analyze trace log for "Prevention" & "Discrepancy"
-        # event: {'blocker': seeker, 'company': company, ...}
-        for event in trace_log:
-            if event['type'] == 'rejection_caused':
-                blocker = event['blocker']
-                company = event['company']
-                
-                # Check Discrepancy: Did the blocker end up at 'company'?
-                final_match = final_assignments.get(blocker)
-                
-                if final_match != company:
-                    # Found a blocking instance
-                    blocking_instances.append((blocker, company))
         
+        # 2. Part 2: Blocking Job Seekersの特定
+        # 条件1 Prevention: そのステップで一時的に採用され、他人を拒否させた
+        # 条件2 Discrepancy: 最終的なマッチング先がその企業ではない
+        
+        blocking_instances = [] # 形式: {'step': int, 'blocker': str, 'company': str}
+        
+        for event in trace_log:
+            # log形式: {'step': int, 'blocker': str, 'company': str, 'type': 'rejection_caused'}
+            blocker = event['blocker']
+            company = event['company']
+            step = event['step']
+            
+            # Discrepancyの確認: 最終的にその企業にいないか？
+            final_match = final_assignments.get(blocker)
+            
+            if final_match != company:
+                blocking_instances.append({
+                    'step': step, 
+                    'blocker': blocker, 
+                    'company': company
+                })
+        
+        # ブロッカーがいなければ終了（Part 1の結果がFinal）
         if not blocking_instances:
             return da_matches
         
-        # 3. Apply Waivers (Step 1 of Part 2)
-        # Remove the blocking company from the blocker's preference list
-        unique_blocks = set(blocking_instances)
+        # 3. Last Step の特定
+        # "The computer looks for the last step... in which a Job Seeker has become a blocking Job Seeker."
+        max_step = max(b['step'] for b in blocking_instances)
         
-        for seeker, company in unique_blocks:
+        # Last Stepに該当するインスタンスのみを抽出
+        target_instances = [b for b in blocking_instances if b['step'] == max_step]
+        
+        # 4. Waiverの適用 (リストからの削除)
+        changed = False
+        
+        # 重複処理を防ぐためにセット化
+        waivers_to_apply = set((b['blocker'], b['company']) for b in target_instances)
+        
+        for seeker, company in waivers_to_apply:
             if company in current_seekers_prefs[seeker]:
                 current_seekers_prefs[seeker].remove(company)
+                changed = True
         
-        # Loop continues to re-run DA (Step 2 of Part 2)
+        # 変更がなければ終了（無限ループ防止）
+        if not changed:
+            return da_matches
+            
+    return da_matches
 
-def _run_da_with_logging(seekers_prefs, companies_prefs, quotas):
+def _run_simultaneous_da(seekers_prefs, companies_prefs, quotas):
     """
-    Helper DA that returns a log of rejections to identify blockers.
+    ラウンド制 (Simultaneous) Deferred Acceptance アルゴリズム
+    
+    Returns:
+        trace_log: [{'step': n, 'blocker': s, 'company': c, ...}, ...]
+        matches: {company: [seekers]}
     """
-    free_seekers = list(seekers_prefs.keys())
+    # 初期化
+    # 誰がどの企業に仮内定しているか
     matches = {c: [] for c in companies_prefs}
-    proposals_count = {seeker: 0 for seeker in seekers_prefs}
+    # 誰がまだ未定（Free）か
+    free_seekers = list(seekers_prefs.keys())
+    # 誰が何番目の希望まで応募したか
+    proposals_count = {s: 0 for s in seekers_prefs}
+    
+    # 企業の選好順位を高速検索できるようにマップ化
     company_rankings = {c: {s: i for i, s in enumerate(prefs)} for c, prefs in companies_prefs.items()}
     
-    # Log events: {'type': 'rejection_caused', 'blocker': seeker, 'company': company}
     trace_log = []
-
-    while free_seekers:
-        seeker = free_seekers.pop(0)
-        submitted_list = seekers_prefs.get(seeker, [])
-        idx = proposals_count[seeker]
+    step = 0
+    
+    while True:
+        step += 1
         
-        if idx >= len(submitted_list):
-            continue 
-            
-        company = submitted_list[idx]
-        proposals_count[seeker] += 1
+        # このラウンドでのプロポーザル（応募）を集める辞書: {company: [applicants]}
+        current_round_proposals = {c: [] for c in companies_prefs}
         
-        if company not in company_rankings:
-            free_seekers.insert(0, seeker)
-            continue
-            
-        capacity = quotas.get(company, 1)
-        current_matches = matches[company]
-        rank_map = company_rankings[company]
+        # 未定の求職者が一斉に応募する
+        active_seekers_in_round = []
         
-        if len(current_matches) < capacity:
-            current_matches.append(seeker)
-        else:
-            valid_matches = [m for m in current_matches if m in rank_map]
+        if not free_seekers:
+            break
             
-            if not valid_matches:
-                 current_matches.append(seeker)
-            else:
-                worst_match = max(valid_matches, key=lambda x: rank_map.get(x, float('inf')))
-                worst_rank = rank_map.get(worst_match, float('inf'))
-                new_rank = rank_map.get(seeker, float('inf'))
+        # Freeな求職者が次の希望に応募
+        candidates_to_process = list(free_seekers) # コピーを作成してループ
+        free_seekers = [] # 一旦空にする（拒否されたら戻ってくる）
+        
+        has_new_proposals = False
+        
+        for seeker in candidates_to_process:
+            pref_list = seekers_prefs.get(seeker, [])
+            idx = proposals_count[seeker]
+            
+            if idx < len(pref_list):
+                target_company = pref_list[idx]
+                proposals_count[seeker] += 1
                 
-                if new_rank < worst_rank:
-                    # 'seeker' enters and causes 'worst_match' to be rejected.
-                    # 'seeker' is a blocker for this specific rejection.
+                if target_company in current_round_proposals:
+                    current_round_proposals[target_company].append(seeker)
+                    active_seekers_in_round.append(seeker)
+                    has_new_proposals = True
+                else:
+                    # 存在しない企業への応募は即時却下扱いとし、次のラウンドで次に応募させる（またはここでFreeに戻す）
+                    free_seekers.append(seeker)
+            else:
+                # 希望リスト尽きた
+                pass
+
+        if not has_new_proposals:
+            break
+            
+        # 各企業が選考を行う
+        for company, new_applicants in current_round_proposals.items():
+            if not new_applicants and not matches[company]:
+                continue
+                
+            # 現在の仮内定者 + 新規応募者
+            current_holders = matches[company]
+            all_candidates = current_holders + new_applicants
+            
+            # ランキングに基づいてソート（ランク外の人は除外される可能性あり）
+            rank_map = company_rankings.get(company, {})
+            
+            # ランキングに含まれる人のみ有効
+            valid_candidates = [s for s in all_candidates if s in rank_map]
+            rejected_candidates_this_turn = [s for s in all_candidates if s not in rank_map]
+            
+            # 優先順位でソート (値が小さいほど高優先)
+            valid_candidates.sort(key=lambda s: rank_map[s])
+            
+            capacity = quotas.get(company, 1)
+            
+            # 定員内で合格する人
+            accepted = valid_candidates[:capacity]
+            # 定員漏れで拒否される人
+            rejected_capacity = valid_candidates[capacity:]
+            
+            # 新たに拒否されるリスト
+            total_rejected = rejected_capacity + rejected_candidates_this_turn
+            
+            # マッチング更新
+            matches[company] = accepted
+            
+            # 拒否された人をFreeに戻す
+            for r in total_rejected:
+                free_seekers.append(r)
+            
+            # ログ記録: "Blocker" の特定
+            # 定義: "Temporarily admitted... caused other Job Seekers to be rejected"
+            # つまり、今回合格リスト(accepted)に入っている人は、今回拒否された人(total_rejected)全員に対して「ブロック」を行っている
+            
+            if total_rejected and accepted:
+                for blocker in accepted:
                     trace_log.append({
                         'type': 'rejection_caused',
-                        'blocker': seeker,
+                        'step': step,
+                        'blocker': blocker,
                         'company': company
                     })
-                    # Everyone else currently holding a seat is also "blocking" the victim
-                    for holder in current_matches:
-                        if holder != worst_match:
-                             trace_log.append({
-                                'type': 'rejection_caused',
-                                'blocker': holder,
-                                'company': company
-                            })
-
-                    current_matches.remove(worst_match)
-                    current_matches.append(seeker)
-                    free_seekers.append(worst_match) 
-                else:
-                    # 'seeker' is rejected.
-                    # Current holders are blockers.
-                    for holder in current_matches:
-                        trace_log.append({
-                            'type': 'rejection_caused',
-                            'blocker': holder,
-                            'company': company
-                        })
-                    free_seekers.append(seeker)
                     
     return trace_log, matches
 
