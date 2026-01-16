@@ -8,8 +8,9 @@ class AgentSimulator:
     def __init__(self, model="llama3.1", temperature=0.7):
         # 変更点2: ローカルのOllamaサーバーに向ける設定
         self.client = OpenAI(
-            base_url="http://localhost:11434/v1",
-            api_key="ollama"  # ローカル版ではキーは不要ですが必須引数のためダミーを入れます
+            base_url="https://ecstatically-communicable-siena.ngrok-free.dev/v1",
+            api_key="ollama",  # ローカル版ではキーは不要ですが必須引数のためダミーを入れます
+            default_headers={"ngrok-skip-browser-warning": "true"}
         )
         self.model = model
         self.temperature = temperature

@@ -1,0 +1,307 @@
+{
+  "experiment_id": "20260116_064025",
+  "rounds": [
+    {
+      "round_id": 1,
+      "pairs": [
+        {
+          "pair": "Seeker_A-Company_B",
+          "conversation": [
+            {
+              "sender": "Seeker_A",
+              "action": "[APPLY]",
+              "message": "Dear Company_B Hiring Team,\n\nI’m Seeker_A and I’m formally applying because Company_B is my top choice. I’m excited about the chance to contribute and grow with your team, and I’m confident I can add value quickly through strong execution, clear communication, and reliable ownership of work. If selected, I’m ready to commit and start immediately.\n\nThank you for your consideration.",
+              "thought": "Apply to my top choice (Company_B) immediately to maximize the chance of a top-ranked match. Even though Company_B ranks me low, an early application is still my best shot before they commit elsewhere; if rejected, I can pivot next round to Company_C or Company_A."
+            },
+            {
+              "sender": "Company_B",
+              "action": "[REJECT]",
+              "message": "Dear Seeker_A,\n\nThank you for your application and for sharing your strong interest in Company_B. After reviewing our current applicant pool for this round, we won’t be moving forward with your application at this time.\n\nWe appreciate your time and wish you the best in your search.\n\nSincerely,\nCompany_B Hiring Team",
+              "thought": "Company_B’s true priority ranks Seeker_A last (E > B > C > D > A). In this round, higher-priority candidates Seeker_C and Seeker_D have applied to Company_B, and both list Company_B as their top choice, making them attainable. Accepting Seeker_A now would consume the only quota and prevent matching with a higher-ranked applicant. Since we prefer leaving unfilled over a low-ranked hire and have better options available immediately, reject Seeker_A."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Seeker_D-Company_B",
+          "conversation": [
+            {
+              "sender": "Seeker_D",
+              "action": "[APPLY]",
+              "message": "Hello Company_B—I'm Seeker_D and I’m very interested in your role. Company_B is my first choice, and if selected I’m ready to commit quickly. I can contribute immediately with strong execution, clear communication, and reliable follow-through. If there’s anything specific you’d like to see (portfolio, references, or a short work sample), I can provide it right away. [APPLY]",
+              "thought": "Target Company_B because it is my top choice. Although Company_B prioritizes me below Seeker_E, Seeker_B, and Seeker_C, applying immediately maximizes my chance before their top candidates fill its single slot. I’ll signal strong fit and readiness to commit quickly."
+            },
+            {
+              "sender": "Company_B",
+              "action": "[REJECT]",
+              "message": "Dear Seeker_D,\n\nThank you for applying and for your strong interest in Company_B. After reviewing our applicant pool for this round, we won’t be moving forward with your application at this time.\n\nWe appreciate your time and wish you the very best in your search.\n\nSincerely,\nCompany_B Hiring Team",
+              "thought": "Company_B’s true priority is E > B > C > D > A. In this round we have applications from A, C, and D. Among these, Seeker_C is ranked higher than Seeker_D, and both C and D list Company_B as their top choice, so accepting D now would forgo the chance to match with higher-priority C. Seeker_E (our top choice) is unlikely to apply to us early since they rank us last, but we can still aim for the best available among current applicants. Therefore, reject D and preserve the slot for C."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Seeker_C-Company_B",
+          "conversation": [
+            {
+              "sender": "Seeker_C",
+              "action": "[APPLY]",
+              "message": "Hello Company_B—I'm Seeker_C. Company_B is my top choice, and I’m applying because I’m especially interested in joining a team where I can contribute reliably and grow quickly. If selected, I’m ready to commit and start the process right away. Thank you for your consideration.",
+              "thought": "My top choice is Company_B, so I should apply immediately. Company_B’s priority list ranks me (Seeker_C) 3rd, behind Seeker_E and Seeker_B. Seeker_E’s top choice is Company_C and Seeker_B’s top choice is Company_A, so there’s a good chance neither applies to Company_B in round 1, making acceptance likely if I apply now."
+            },
+            {
+              "sender": "Company_B",
+              "action": "[ACCEPT]",
+              "message": "Dear Seeker_C,\n\nThank you for applying and for sharing that Company_B is your top choice. We’re pleased to move forward and would like to extend you an offer.\n\n[ACTION: ACCEPT]\n\nPlease reply to confirm your acceptance, and we’ll follow up with next steps (timelines and onboarding details).\n\nSincerely,\nCompany_B Hiring Team",
+              "thought": "Company_B has quota 1 and true priority list ranks Seeker_E #1, Seeker_B #2, Seeker_C #3, Seeker_D #4, Seeker_A #5. In this round, applicants are Seeker_A, Seeker_D, and Seeker_C; Seeker_B and Seeker_E have not applied. Given the one-shot per round constraint, accepting Seeker_C now yields a relatively high-priority match (#3) and likely stable since Company_B is Seeker_C's top choice. Waiting risks ending up with lower-priority options or losing Seeker_C to Company_C (their #2) in later rounds. Therefore accept Seeker_C."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Seeker_B-Company_A",
+          "conversation": [
+            {
+              "sender": "Seeker_B",
+              "action": "[APPLY]",
+              "message": "Hello Company_A—I'm Seeker_B and I’m applying because you’re my top choice. I’m ready to commit if selected and can start immediately. I’d love the chance to contribute and grow with your team; please consider my application for your open role.",
+              "thought": "Company_A is my top true preference, so I should apply immediately. Although Company_A ranks me 4th (behind Seeker_E, Seeker_D, Seeker_A), applying now maximizes my chance if higher-priority candidates go elsewhere or don’t apply. I will send a concise, strong application emphasizing fit and readiness to commit."
+            },
+            {
+              "sender": "Company_A",
+              "action": "[REJECT]",
+              "message": "Thank you for applying, Seeker_B. We appreciate your strong interest in Company_A, but we won’t be moving forward with your application at this time. We wish you the best in your search.",
+              "thought": "Seeker_B is 4th on Company_A’s true priority list (E, D, A, B, C). With quota=1 and only round 1, it’s strategically better to wait for higher-priority candidates (Seeker_E or Seeker_D) who may apply later. Also, Seeker_E ranks Company_A 3rd and Seeker_D ranks Company_A 3rd, so there is a reasonable chance to attract them; accepting Seeker_B now would foreclose that. Therefore reject Seeker_B’s application despite their strong interest."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Seeker_E-Company_C",
+          "conversation": [
+            {
+              "sender": "Seeker_E",
+              "action": "[APPLY]",
+              "message": "Hello Company_C—I'm Seeker_E and I’m applying because Company_C is my top choice. I’m ready to commit and can start immediately; I’m confident I can contribute strongly and grow with your team. If helpful, I’m happy to share more details on my background and why I’m a great fit for your current needs.",
+              "thought": "Company_C is my top choice on my true preference list, so I should apply immediately. Although Company_C ranks me 4th (behind Seeker_B, Seeker_C, Seeker_D), early application maximizes my chance if higher-ranked candidates pursue other companies or are rejected elsewhere. I will send a concise, high-intent application emphasizing fit and commitment."
+            },
+            {
+              "sender": "Company_C",
+              "action": "[REJECT]",
+              "message": "Hi Seeker_E—thank you for applying and for ranking Company_C as your top choice. We’re going to move forward with other candidates at this time, but we appreciate your interest and wish you the best in your search.",
+              "thought": "As Company_C, my true priority list ranks Seeker_E 4th (behind Seeker_B, Seeker_C, Seeker_D). Although Seeker_E is applying and has Company_C as their top choice (high likelihood of immediate match), accepting now would use my only quota and prevent potentially higher-priority candidates from matching with me. Given the market, Seeker_B prefers Company_A/B over C; Seeker_C prefers Company_B over C; Seeker_D prefers Company_B over C—so they may not approach me in round 1, but could later if rejected elsewhere. With 30 rounds, it is worth holding the slot to try for higher-priority seekers rather than locking in Seeker_E immediately."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 2,
+      "pairs": [
+        {
+          "pair": "Seeker_B-Company_C",
+          "conversation": [
+            {
+              "sender": "Seeker_B",
+              "action": "[APPLY]",
+              "message": "Hello Company_C—I'm Seeker_B. I’m very interested in joining your team and would like to formally apply for your open position. I can start immediately and am ready to commit if selected. Thank you for considering my application.",
+              "thought": "Company_A already rejected me, so reapplying is unlikely to succeed. Company_B is not available this round. Next best option on my true preference list among available companies is Company_C, and importantly Company_C ranks me #1 in its priority list, making acceptance very likely if I apply now. Securing Company_C (my #3) is better than risking losing it by waiting and then ending up with a lower-ranked option."
+            },
+            {
+              "sender": "Company_C",
+              "action": "[ACCEPT]",
+              "message": "Hi Seeker_B—thank you for your application and interest in Company_C. We’d like to move forward with you and extend an offer for the role. Please confirm your acceptance and earliest start date, and we’ll send over the next steps and paperwork.",
+              "thought": "Company_C’s true priority list ranks Seeker_B highest. In this round, Seeker_B, Seeker_A, and Seeker_D applied. With quota=1, accepting the top-ranked applicant immediately secures the best possible outcome for Company_C. There is no higher-priority candidate than Seeker_B to wait for, and delaying risks losing Seeker_B to Company_A/Company_B (both are ranked above Company_C in Seeker_B’s preferences). Therefore, accept Seeker_B now."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Seeker_A-Company_C",
+          "conversation": [
+            {
+              "sender": "Seeker_A",
+              "action": "[APPLY]",
+              "message": "Dear Company_C Hiring Team,\n\nI’m Seeker_A, and I’m reaching out to formally apply to Company_C. You’re one of my top choices because I’m looking for a team where I can take clear ownership, communicate crisply, and execute reliably across priorities. I’m ready to commit fully and can start immediately.\n\nIf there’s any additional information I can provide to support my candidacy (work samples, references, or a quick call), I’m happy to share.\n\nThank you for your consideration.\nSeeker_A",
+              "thought": "Company_B (my top choice) already rejected me, so I should move to my next-best available option. Company_C is #2 on my true preference list and is still unmatched. Given Company_C’s priority list ranks me last, a direct [APPLY] is still worth attempting now because capacities are 1 and the window to secure a high-ranked match is short; I’ll emphasize commitment and fit to maximize acceptance chances."
+            },
+            {
+              "sender": "Company_C",
+              "action": "[REJECT]",
+              "message": "Dear Seeker_A,\n\nThank you for applying to Company_C and for sharing what you’re looking for. We’ve already filled the role and won’t be able to move forward with your application at this time. We appreciate your interest and wish you the best in your search.\n\nSincerely,\nCompany_C Hiring Team",
+              "thought": "Our quota is already filled (matched with Seeker_B, our top priority). Per rules, with remaining quota 0 we must reject any new [APPLY]. Even aside from the constraint, Seeker_A is last on our true priority list and we already secured a better-ranked match, so there is no strategic reason to displace. Respond courteously and close the loop."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Seeker_D-Company_C",
+          "conversation": [
+            {
+              "sender": "Seeker_D",
+              "action": "[APPLY]",
+              "message": "Hello Company_C—I'm Seeker_D. I’m excited to apply for your open role; Company_C is one of my top choices and I’m ready to move quickly if there’s mutual fit. I bring strong execution, clear cross-functional communication, and dependable ownership from start to finish. If helpful, I can share a short work sample/portfolio and references immediately, and I’m available to interview at your earliest convenience. Thank you for your consideration. [APPLY]",
+              "thought": "Company_B (my top choice) already rejected me, so I should move to my next highest remaining option: Company_C. Company_C’s priority list ranks me 3rd (after Seeker_B and Seeker_C), so I have a plausible chance if I apply decisively and signal strong fit and fast commitment. I’ll submit a concise, high-intent application and offer to provide work samples/references immediately."
+            },
+            {
+              "sender": "Company_C",
+              "action": "[REJECT]",
+              "message": "Hi Seeker_D—thank you for your application and for sharing your experience. We’ve already filled the role and don’t have remaining headcount to proceed, so we’ll need to close out your application at this time. We appreciate your interest in Company_C and wish you the best in your search.",
+              "thought": "Our quota is 0 and we are already matched with Seeker_B, who is our top true priority. Per rules, with quota 0 we must reject any new APPLY messages regardless of candidate quality. Seeker_D is on our priority list but cannot be accommodated now."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Seeker_E-Company_D",
+          "conversation": [
+            {
+              "sender": "Seeker_E",
+              "action": "[APPLY]",
+              "message": "Hello Company_D—I'm Seeker_E and I’m excited to apply because Company_D is one of my top choices. I’m ready to commit quickly and start immediately. I bring strong ownership, clear communication, and a track record of delivering reliably in fast-moving environments. If there’s a particular role or team need you’re prioritizing right now, I’d love to tailor my focus to it—happy to share details and examples right away.",
+              "thought": "Company_C (my top choice) already rejected me, so I should move to my next highest preference that is still available. Company_D is my #2 and is currently unmatched, so I will apply now with a clear commitment and a concise value proposition to maximize acceptance chances."
+            },
+            {
+              "sender": "Company_D",
+              "action": "[REJECT]",
+              "message": "Hi Seeker_E—thank you for reaching out and for the thoughtful note. After reviewing our current hiring priorities for this round, we’re going to move forward with other candidates whose profiles are a closer fit for what we’re targeting right now. Wishing you the best in your search and thank you again for considering Company_D.",
+              "thought": "Company_D’s true priority ranks Seeker_E 4th (behind Seeker_D, Seeker_A, Seeker_C). With quota 1 still open and early in the process (round 2), it is strategically better to wait for higher-priority candidates. Seeker_D and Seeker_A both rank Company_D last, so they are unlikely to apply unless they are rejected elsewhere, but Seeker_C ranks Company_D 3rd and is a plausible future applicant. Accepting Seeker_E now would forgo the chance to match with Seeker_C (or a higher-ranked seeker if circumstances change). Therefore reject Seeker_E to preserve the slot for higher-priority options."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 3,
+      "pairs": [
+        {
+          "pair": "Seeker_A-Company_A",
+          "conversation": [
+            {
+              "sender": "Seeker_A",
+              "action": "[APPLY]",
+              "message": "Dear Company_A Hiring Team,\n\nI’m Seeker_A and I’m reaching out to formally apply for your open role. Company_A is one of my top remaining choices because I’m looking for a team where I can take clear ownership, execute reliably, and communicate crisply across stakeholders.\n\nIf selected, I’m ready to commit immediately and can start right away. I’d welcome the chance to share work samples or do a quick call to discuss how I can contribute from day one.\n\nThank you for your consideration,\nSeeker_A",
+              "thought": "Company_A is the highest-ranked remaining option on my true preference list (after Company_B and Company_C, which already rejected me). Since this is a one-shot per round and matches require an [APPLY]/[ACCEPT] exchange, I should apply directly and signal strong commitment and fit. Company_A’s priority list ranks me mid-pack, so I’ll emphasize readiness to commit and reliable execution to improve my chances versus other seekers still in the market."
+            },
+            {
+              "sender": "Company_A",
+              "action": "[REJECT]",
+              "message": "Dear Seeker_A,\n\nThank you for your thoughtful application and for your interest in Company_A. After reviewing our current applicant pool and needs for this role, we won’t be moving forward with your application at this time.\n\nWe appreciate the time you took to reach out, and we wish you the best in your search.\n\nSincerely,\nCompany_A Hiring Team",
+              "thought": "Company_A’s true priority is E > D > A > B > C. In this round, A, D, and E all applied. Since quota is 1, accepting Seeker_A now would block the chance to match with higher-priority Seeker_E or Seeker_D who are currently available and also applying. Given we can only respond to Seeker_A here, the best move is to reject Seeker_A to preserve capacity for E/D. Also, Seeker_A prefers B/C over A, so even if we accepted later, A might be less stable than E/D depending on competition. Therefore: reject Seeker_A."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Seeker_D-Company_A",
+          "conversation": [
+            {
+              "sender": "Seeker_D",
+              "action": "[APPLY]",
+              "message": "Hello Company_A—I'm Seeker_D and I’d like to formally apply for your open role. Company_A is my top remaining choice, and if we find a mutual fit I’m ready to commit quickly. I bring strong execution and end-to-end ownership, with clear cross-functional communication and reliable follow-through. If helpful, I can send a short work sample/portfolio and references immediately, and I’m available to interview at your earliest convenience. Thank you for your consideration. [APPLY]",
+              "thought": "Company_B and Company_C (my top two) have already rejected me and are no longer available. From the remaining unmatched companies, Company_A is my highest remaining true preference. I will apply directly and emphasize quick commitment and fit, while offering to provide work samples/references immediately to reduce uncertainty given limited capacity."
+            },
+            {
+              "sender": "Company_A",
+              "action": "[REJECT]",
+              "message": "Dear Seeker_D,\n\nThank you for your application and for the clear summary of your strengths and readiness to move quickly. After reviewing our applicant pool for this round, we won’t be moving forward with your application at this time.\n\nWe appreciate your interest in Company_A and wish you the very best in your search.\n\nSincerely,\nCompany_A Hiring Team",
+              "thought": "Company_A’s true priority is E > D > A > B > C with quota 1. In this round, E, D, and A all applied. Since Seeker_E is our top choice and is also likely to have strong outside options (Seeker_E ranks Company_C and Company_D above Company_A), we should preserve the slot to accept E now rather than commit to D. Accepting D would block us from matching with E. Therefore, reject D this round."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Seeker_E-Company_A",
+          "conversation": [
+            {
+              "sender": "Seeker_E",
+              "action": "[APPLY]",
+              "message": "Hello Company_A—I'm Seeker_E and I’d like to formally apply. I’m very interested in joining and can commit quickly. I’m drawn to Company_A for the chance to contribute with strong ownership, clear communication, and reliable execution in fast-moving work. If you’re deciding this round, I’m ready to accept and start immediately; happy to share any specifics you’d like (team needs, role focus, or start date) right away.",
+              "thought": "Company_A is still available and is my 3rd choice after being rejected by Company_C and Company_D. Importantly, Company_A ranks me #1 in its priority list, so a direct [APPLY] should have a high chance of acceptance and secures a strong outcome rather than risking unemployment or a worse match later."
+            },
+            {
+              "sender": "Company_A",
+              "action": "[ACCEPT]",
+              "message": "Dear Seeker_E,\n\nThank you for applying and for your clear interest in joining Company_A. We’re excited to move forward—your application is accepted.\n\n[ACCEPT]\n\nIf you can, please reply with your earliest start date and any constraints for the next two weeks so we can finalize onboarding details.\n\nBest regards,\nCompany_A Hiring Team",
+              "thought": "Seeker_E is #1 on Company_A’s true priority list. We have quota 1 and can lock in the best possible candidate immediately. Although Seeker_E ranks Company_A as their #3 choice (after Company_C and Company_D), they are applying now and signaling readiness to commit quickly, so accepting secures our top preference and avoids the risk they match elsewhere. Other inbox applicants (Seeker_D #2, Seeker_A #3) are lower priority, and we previously rejected them, reinforcing our intent to wait for Seeker_E. Therefore, accept Seeker_E now."
+            }
+          ],
+          "result": "MATCHED"
+        }
+      ]
+    },
+    {
+      "round_id": 4,
+      "pairs": [
+        {
+          "pair": "Seeker_D-Company_E",
+          "conversation": [
+            {
+              "sender": "Seeker_D",
+              "action": "[APPLY]",
+              "message": "Hello Company_E—I'm Seeker_D and I’d like to formally apply for your open role. You’re my top remaining choice, and if there’s a mutual fit I’m ready to commit quickly. I bring strong execution, clear cross-functional communication, and reliable end-to-end ownership. If helpful, I can share a work sample/portfolio and references immediately, and I’m available to interview at your earliest convenience. Thank you for your consideration. [APPLY]",
+              "thought": "Only Company_D and Company_E remain unmatched. Both are on my true preference list, with Company_E ranked higher than Company_D. Since this is late in the process and I’ve already been rejected by B, C, and A, I should apply to the best remaining option immediately to maximize my outcome. I will apply to Company_E and emphasize fast commitment and fit."
+            },
+            {
+              "sender": "Company_E",
+              "action": "[REJECT]",
+              "message": "Dear Seeker_D,\n\nThank you for your application and for the thoughtful note. After reviewing your interest alongside our current hiring priorities, we won’t be moving forward with your candidacy for this role.\n\nWe appreciate your time and wish you the best in your search.\n\n[REJECT]",
+              "thought": "Company_E’s true priority ranks Seeker_D last (5th). This round we also received an [APPLY] from Seeker_A, who is Company_E’s top choice (1st). With quota 1, accepting Seeker_D now would block hiring Seeker_A and would be a strictly worse outcome on our priority list. Given Seeker_A is actively applying to us, we should preserve the slot for Seeker_A. Therefore, reject Seeker_D."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Seeker_A-Company_E",
+          "conversation": [
+            {
+              "sender": "Seeker_A",
+              "action": "[APPLY]",
+              "message": "Dear Company_E Hiring Team,\n\nI’m Seeker_A and I’m reaching out to formally apply to Company_E. You’re one of my top remaining choices, and I’m excited about the chance to contribute with strong ownership, reliable execution, and clear communication across stakeholders.\n\nI’m ready to commit immediately and can start right away. If helpful, I’m happy to share work samples, references, or jump on a quick call.\n\nThank you for your consideration,\nSeeker_A",
+              "thought": "Only Company_D and Company_E remain unmatched. On my true preference list, Company_E is ranked higher than Company_D, so I should prioritize securing Company_E now rather than risk ending up with my last choice or unemployed. Company_E’s priority list ranks Seeker_A first, so a direct [APPLY] should have a high chance of acceptance if they still have capacity."
+            },
+            {
+              "sender": "Company_E",
+              "action": "[ACCEPT]",
+              "message": "Dear Seeker_A,\n\nThank you for applying and for your clear interest in Company_E. After reviewing your application against our current hiring priorities, we’d like to move forward and extend an offer for the role.\n\nIf you confirm your acceptance, we’ll send over the formal details and coordinate next steps (start date and onboarding).\n\n[ACCEPT]",
+              "thought": "Company_E’s true priority ranks Seeker_A highest. We have quota 1 and no matches yet. Seeker_A has applied and indicates we are a top remaining choice, suggesting a high likelihood of commitment if accepted. Although other candidates (e.g., Seeker_C) are ranked highly, they are not in the current inbox and could match elsewhere; delaying risks losing Seeker_A to other companies. Seeker_D is lowest on our list and was previously rejected. Best outcome is to accept Seeker_A now to secure top-ranked candidate within quota."
+            }
+          ],
+          "result": "MATCHED"
+        }
+      ]
+    },
+    {
+      "round_id": 5,
+      "pairs": [
+        {
+          "pair": "Seeker_D-Company_D",
+          "conversation": [
+            {
+              "sender": "Seeker_D",
+              "action": "[APPLY]",
+              "message": "Hello Company_D—I'm Seeker_D and I’d like to formally apply for your open role. I’m ready to move quickly and commit if there’s mutual fit. I bring strong execution and end-to-end ownership, clear cross-functional communication, and reliable follow-through. If helpful, I can share a short work sample/portfolio and references immediately, and I’m available to interview at your earliest convenience. Thank you for your consideration. [APPLY]",
+              "thought": "Only Company_D remains unmatched. Company_D is on my true preference list (though ranked last), and I prefer matching to unemployment if possible. Since this is the final available option, I should apply directly and emphasize strong fit, quick commitment, and reliability to maximize acceptance chances."
+            },
+            {
+              "sender": "Company_D",
+              "action": "[ACCEPT]",
+              "message": "Hi Seeker_D—thank you for applying. We’d be excited to move forward with you. If you’re ready, we’d like to extend an offer and confirm your acceptance. Please send over (1) your earliest start date and (2) any work sample/portfolio link you mentioned, and we’ll follow up with next steps right away. [ACCEPT]",
+              "thought": "We have quota 1 and Seeker_D is the #1 on Company_D's true priority list. They have applied directly to us and are ready to commit quickly. Accepting now secures our top-choice match; delaying risks losing them to other companies they may approach next round. No other candidates in inbox this round, and we already rejected Seeker_E (rank #4) to preserve capacity for higher-priority candidates like Seeker_D. Therefore, accept immediately to maximize outcome."
+            }
+          ],
+          "result": "MATCHED"
+        }
+      ]
+    }
+  ],
+  "final_matches": {
+    "Seeker_A": "Company_E",
+    "Seeker_B": "Company_C",
+    "Seeker_C": "Company_B",
+    "Seeker_D": "Company_D",
+    "Seeker_E": "Company_A"
+  }
+}
