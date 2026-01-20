@@ -4,7 +4,7 @@ import pandas as pd
 import datetime
 from dotenv import load_dotenv
 from llm_client import AgentSimulator
-from alogorithm_engine import run_boston_algorithm
+from alogorithm_engine import run_ttc_algorithm
 
 load_dotenv()
 
@@ -12,24 +12,28 @@ NUM_TRIALS = 100  # 実験回数
 
 # Example Description for DA
 DA_DESCRIPTION = """
-The assignment is generated according to the following procedure. In this procedure, admissions are final immediately at each step.
+The assignment is generated according to the following procedure:
 
-Step 1
-• For each Job Seeker, an application is sent to the Company that they ranked first on their "Choice Ranking List".
-• Each Company considers all applications received. The Job Seeker with the highest priority is **permanently admitted** up to the Company's capacity.
-• The remaining Job Seekers are rejected.
-• Note: Once a Job Seeker is admitted in this step, their match is final. The Company is no longer available in subsequent steps.
+Step 1 
+• For each Job Seeker, an application is sent to the Company that they ranked first on their "Choice Ranking List". 
+• Simultaneously, each Company identifies the Job Seeker with the highest priority (based on the Company's internal standards) among all Job Seekers. 
+• The computer looks for a "closed loop" where applications and identifications match. This occurs in two cases: 
+1. A Job Seeker applies to a Company, and that Company identifies the same Job Seeker. 
+2. A chain is formed (e.g., Job Seeker A applies to Company X, Company X identifies Job Seeker B, and Job Seeker B applies to Company Y... eventually leading back to a Company that identifies Job Seeker A). 
+• Job Seekers involved in such a closed loop are permanently admitted to the Company to which they sent their application. 
+• The admitted Job Seekers and the corresponding seats at the Companies are removed from the procedure.
 
-Step 2
-• For each Job Seeker who was rejected in the previous step, an application is sent to the Company that they ranked second on their "Choice Ranking List".
-• Importantly, Job Seekers can only apply to Companies that still have seats available (i.e., Companies that did not fill their position in Step 1).
-• Among the new applicants, the available Companies permanently admit the Job Seekers with the highest priority. The remaining Job Seekers are rejected.
+Step 2 
+• For each Job Seeker who was not admitted in the previous step, an application is sent to the Company that they ranked highest among the Companies that still have quotas. 
+• Each Company with quotas identifies the Job Seeker with the highest priority among the Job Seekers who have not yet been admitted. 
+• As in the previous step, the computer looks for closed loops where applications and identifications match or form a chain. 
+• The Job Seekers involved in these loops are permanently admitted to the Company they applied to, and they are removed from the procedure together with the filled seats.
 
-Following steps
-• The procedure continues according to the same rules, with rejected Job Seekers applying to their next ranked Company, provided that the Company still has a vacancy.
+Following steps 
+• The procedure continues according to the same rules.
 
 Final Step
-• The procedure ends when no Job Seeker is rejected or all rejected Job Seekers have run out of Companies on their list.
+• The procedure ends when all Job Seekers are admitted or all quotas are filled.
 """
 
 # ... (check_stability と check_pareto_efficiency 関数は変更なしのため省略) ...
@@ -179,7 +183,7 @@ def main():
                 agent_submissions[seeker_name] = [] 
 
         # --- Phase 2: Run Matching Algorithm ---
-        final_matches_dict = run_boston_algorithm(agent_submissions, companies_true, quotas)
+        final_matches_dict = run_ttc_algorithm(agent_submissions, companies_true, quotas)
         
         seeker_matches = {}
         for company, seekers in final_matches_dict.items():
