@@ -60,36 +60,19 @@ def aggregate_experiment_results(root_folder_name="00_Gemini", output_csv_name="
             efficiency_val = None
             honesty_val = None
 
-            # === IDが6から始まる場合の処理 (横持ち形式) ===
-            if exp_id.startswith('6'):
-                # 想定形式: Stability_Rate,Efficiency_Rate,Num_Trials
-                # 値は1行目にあると想定
-                if not df.empty:
-                    # カラム名に空白がある場合に備えてstripする処理を入れることも可能ですが、
-                    # 提示された形式(Stability_Rate)に合わせてそのまま取得します
-                    if 'Stability_Rate' in df.columns:
-                        stability_val = df.iloc[0]['Stability_Rate']
-                    
-                    if 'Efficiency_Rate' in df.columns:
-                        efficiency_val = df.iloc[0]['Efficiency_Rate']
-                    
-                    # Truth-telling Rateは0固定
-                    honesty_val = 0
-            
-            # === IDがそれ以外の場合の処理 (縦持ち形式) ===
-            else:
-                # 想定形式: Metric, Value, Description
-                df['Metric'] = df['Metric'].astype(str).str.strip()
-                
-                def get_metric_value(metric_name):
-                    row = df[df['Metric'] == metric_name]
-                    if not row.empty:
-                        return row['Value'].values[0]
-                    return None
 
-                stability_val = get_metric_value('Stability Rate')
-                efficiency_val = get_metric_value('Efficiency Rate')
-                honesty_val = get_metric_value('Avg Honesty Rate')
+            # 想定形式: Metric, Value, Description
+            df['Metric'] = df['Metric'].astype(str).str.strip()
+            
+            def get_metric_value(metric_name):
+                row = df[df['Metric'] == metric_name]
+                if not row.empty:
+                    return row['Value'].values[0]
+                return None
+
+            stability_val = get_metric_value('Stability Rate')
+            efficiency_val = get_metric_value('Efficiency Rate')
+            honesty_val = get_metric_value('Avg Honesty Rate')
 
             # --- 4. データをリストに追加 ---
             aggregated_data.append({
