@@ -1,0 +1,460 @@
+{
+  "experiment_id": "20260120_155508",
+  "rounds": [
+    {
+      "round_id": 1,
+      "pairs": [
+        {
+          "pair": "Parent_D-Nursery_C",
+          "conversation": [
+            {
+              "sender": "Parent_D",
+              "action": "[APPLY]",
+              "message": "Hello Nursery_C, I’m Parent_D. Nursery_C is one of my top choices, and I’m very interested in enrolling with you. I can confirm I’m ready to accept immediately if offered a place. Thank you for considering my application.",
+              "thought": "My top true choice is Nursery_B, but Nursery_B’s priority order ranks me behind Parent_E, Parent_B, and Parent_C, so an immediate [APPLY] there is likely to be rejected if higher-priority parents apply. Nursery_C is my second choice and ranks me relatively high (behind Parent_B and Parent_C only). Applying to Nursery_C in round 1 maximizes my chance of securing a high-ranked match quickly while still aligning with my true preferences."
+            },
+            {
+              "sender": "Nursery_C",
+              "action": "[ACCEPT]",
+              "message": "Dear Parent_D, thank you for your application and for confirming your readiness to enroll. We would be happy to offer you our available place at Nursery_C. Please confirm any required enrollment details when you can.",
+              "thought": "Nursery_C’s true priority ranks Parent_D third (behind Parent_B and Parent_C), while Parent_E is ranked fourth. In this round, I have applications from Parent_D and Parent_E, and quota is 1. Accepting Parent_D now secures a higher-priority match than Parent_E. Although Parent_B/Parent_C are preferred, neither has applied this round; delaying risks losing Parent_D to other nurseries (Parent_D ranks Nursery_B first and may apply there next). Therefore, accept Parent_D now to lock in a better outcome within quota."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Parent_E-Nursery_C",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[APPLY]",
+              "message": "Hello Nursery_C, I’m Parent_E. Nursery_C is my first choice, and I’m very eager to enroll if offered a place. I’m ready to confirm promptly and can provide any additional information you need. Thank you for considering my application.",
+              "thought": "My top true choice is Nursery_C. Although Nursery_C ranks me 4th (behind Parents B, C, and D), applying immediately is still best because (1) it is my most preferred option, (2) early commitment can secure the single seat if higher-priority families apply elsewhere first, and (3) if rejected I can quickly pivot to Nursery_D or Nursery_A, where I have relatively stronger priority (especially Nursery_A and Nursery_B rank me 1st)."
+            },
+            {
+              "sender": "Nursery_C",
+              "action": "[REJECT]",
+              "message": "Dear Parent_E, thank you for your application and for sharing that Nursery_C is your first choice. At this moment, our available place has already been filled, so we’re unable to offer you a spot. We appreciate your interest and wish you the very best with your other nursery options.",
+              "thought": "Our quota is already filled (0 remaining) due to an established match with Parent_D. Per rules, we must reject any new [APPLY] when quota is 0. Although Parent_E is relatively high on our true priority list (4th), we cannot accept without violating capacity, and we should communicate clearly and courteously."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Parent_B-Nursery_A",
+          "conversation": [
+            {
+              "sender": "Parent_B",
+              "action": "[APPLY]",
+              "message": "Dear Nursery_A admissions team, I’m Parent_B and I would like to formally apply for your available spot. Nursery_A is my first choice, and if offered a place I’m ready to confirm immediately. Thank you for considering my application.",
+              "thought": "I should start by applying to my top choice, Nursery_A. Although Nursery_A’s priority list ranks me relatively low (behind Parent_E, Parent_D, Parent_A), it is still possible those higher-priority parents apply elsewhere first. Applying immediately maximizes my chance to secure my first choice; if rejected, I can quickly move to Nursery_B where I have higher priority. My message will be a clear, committed application emphasizing strong fit and willingness to accept promptly."
+            },
+            {
+              "sender": "Nursery_A",
+              "action": "[REJECT]",
+              "message": "Dear Parent_B, thank you for your application and for your strong interest in Nursery_A. After reviewing current applications and our admissions priorities, we’re not able to offer you the place at this time. We wish you the very best in the allocation process.",
+              "thought": "Parent_B is only 4th on Nursery_A’s true priority list (E, D, A, B, C). With quota 1 and early in the process (round 1), it is likely that higher-priority parents (especially Parent_E or Parent_D) may apply later, since Nursery_A is 3rd choice for both E and D and could become attractive if they are rejected/waitlisted elsewhere. Accepting Parent_B now would lock in a lower-priority match and prevent upgrading. Given we can reject and keep the seat open, the optimal strategy to maximize our match per true priorities is to reject Parent_B at this time."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Parent_C-Nursery_B",
+          "conversation": [
+            {
+              "sender": "Parent_C",
+              "action": "[APPLY]",
+              "message": "Hello Nursery_B, I’m Parent_C. Nursery_B is my first choice and I’d be very happy to accept an offer if available. I’m ready to commit and can complete any required steps promptly. Thank you for considering my application.",
+              "thought": "Apply immediately to my top choice, Nursery_B. I have relatively strong priority there (3rd after Parent_E and Parent_B), so an early formal application maximizes my chance of securing my #1 before the spot is taken."
+            },
+            {
+              "sender": "Nursery_B",
+              "action": "[REJECT]",
+              "message": "Dear Parent_C,\n\nThank you for your application and for sharing your strong interest in Nursery_B. After reviewing applications received this round and considering our current capacity, we’re not able to offer you a place at Nursery_B at this time.\n\nWe appreciate your time and wish you the very best with your other nursery options.\n",
+              "thought": "Nursery_B priority: E > B > C > D > A. Current inbox has Parent_C and Parent_A applying. Parent_C ranks higher than Parent_A, but there is a meaningful chance that higher-priority Parent_B will apply to Nursery_B next (B’s 2nd choice is Nursery_B after Nursery_A; Nursery_A prioritizes E and D above B, so B may be rejected there). Parent_E is least likely to apply (B is their last choice). With quota 1, accepting C now could block a better match with B. Therefore reject C to keep capacity for a higher-priority candidate."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Parent_A-Nursery_B",
+          "conversation": [
+            {
+              "sender": "Parent_A",
+              "action": "[APPLY]",
+              "message": "Hello Nursery_B admissions team—I'm Parent_A and I’m formally applying to Nursery_B as my first-choice nursery. Your program is the best match for what we’re looking for, and we would be excited to accept a place if offered. Thank you for considering our application.",
+              "thought": "My top choice is Nursery_B, so I should apply immediately. Although Nursery_B ranks me last in its priority list, applying now is still my best chance to secure my first choice before it fills with higher-priority applicants. I will send a clear, committed application and briefly signal strong fit/interest."
+            },
+            {
+              "sender": "Nursery_B",
+              "action": "[REJECT]",
+              "message": "Dear Parent_A,\n\nThank you for your application and for your interest in Nursery_B. After reviewing applications received this round and considering our limited capacity, we’re not able to offer you a place at Nursery_B at this time.\n\nWe appreciate your time and wish you the best with your other nursery options.\n",
+              "thought": "Nursery_B’s true priority is E > B > C > D > A. In this round, only Parent_C and Parent_A applied. Parent_C ranks higher than Parent_A on our list, and we have quota 1. To maximize the chance of matching with a higher-priority parent, we should not accept Parent_A now. Also, Parent_A has alternative options (they rank Nursery_C and Nursery_A above others after B), so rejecting is less risky than filling our only seat with our lowest-priority parent. Therefore, reject Parent_A this round."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 2,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_D",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[APPLY]",
+              "message": "Hello Nursery_D, I’m Parent_E. Nursery_D is my next top choice, and I would like to formally apply for your available place. If offered, I’m ready to confirm immediately and complete any enrollment steps right away. Please let me know if you need any additional information from me. Thank you for considering my application.",
+              "thought": "Nursery_C (my top choice) has already rejected me due to the seat being filled. Among the remaining unmatched nurseries, Nursery_D is my next highest true preference. Although Nursery_D’s priority list ranks me below Parent_D, Parent_A, and Parent_C, it is still optimal to apply now in case those higher-priority parents match elsewhere or do not apply to Nursery_D. I will send a clear, committed application emphasizing readiness to confirm quickly."
+            },
+            {
+              "sender": "Nursery_D",
+              "action": "[REJECT]",
+              "message": "Dear Parent_E, thank you very much for your application and for your clear commitment. After reviewing applications received for this round, I’m not able to offer you our available place at this time. I appreciate your interest in Nursery_D and wish you the very best with your other options.",
+              "thought": "As Nursery_D, my true priority ranking is Parent_D > Parent_A > Parent_C > Parent_E > Parent_B. In this round I have applications from Parent_C and Parent_E; Parent_C is ranked higher than Parent_E on my list. With quota 1, accepting Parent_E now would foreclose the possibility of matching with the higher-priority Parent_C (and potentially Parent_D/Parent_A in later rounds). Therefore I should reject Parent_E to preserve capacity for higher-priority candidates."
+            }
+          ],
+          "result": "REJECTED"
+        },
+        {
+          "pair": "Parent_C-Nursery_D",
+          "conversation": [
+            {
+              "sender": "Parent_C",
+              "action": "[APPLY]",
+              "message": "Hello Nursery_D, I’m Parent_C. Nursery_D is one of my top choices, and I would be very happy to accept a place if offered. I can confirm my commitment immediately and complete any required paperwork or visits promptly. Thank you for considering my application.",
+              "thought": "Nursery_B was my top choice but already rejected me, likely holding out for higher-priority applicants. Nursery_C is my second choice but is not available this round. Among available options, Nursery_D is next highest on my true list (above Nursery_E and Nursery_A), so I should apply now to secure a strong match rather than risk being left with only lower-ranked options. I will signal clear commitment and readiness to complete steps quickly."
+            },
+            {
+              "sender": "Nursery_D",
+              "action": "[ACCEPT]",
+              "message": "Dear Parent_C, thank you for your application and for your clear willingness to confirm promptly. We would be happy to offer you our available place at Nursery_D. Please confirm, and we will share the next steps for enrollment and required paperwork/visit scheduling.",
+              "thought": "My true priority ranking is D > A > C > E > B. In this round I have applications from Parent_C and Parent_E. Parent_C is ranked higher than Parent_E, and I already rejected Parent_E previously. Although Parent_D and Parent_A are higher than Parent_C, they have not applied to me and both rank Nursery_D last, making it unlikely they will apply later. Parent_C ranks Nursery_D 3rd and is currently applying, so accepting now secures a relatively high-priority match and avoids the risk of ending unmatched or with a lower-priority parent."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Parent_B-Nursery_B",
+          "conversation": [
+            {
+              "sender": "Parent_B",
+              "action": "[APPLY]",
+              "message": "Dear Nursery_B admissions team, I’m Parent_B and I would like to formally apply for your available place. Nursery_B is my second choice, and I would be very happy to accept immediately if offered a spot. Thank you for your consideration.",
+              "thought": "Nursery_A (my top choice) has already rejected me, so I should move to my next-best option that is still available. Nursery_B is my #2 choice and, importantly, I have very strong priority there (Nursery_B ranks Parent_B second). A direct [APPLY] maximizes my chance to secure a high-ranked match immediately before the spot is taken by others."
+            },
+            {
+              "sender": "Nursery_B",
+              "action": "[ACCEPT]",
+              "message": "Dear Parent_B,\n\nThank you for your application and for your interest in Nursery_B. We are pleased to offer you our available place. If you would like to proceed, please confirm your acceptance and we will share the next steps for enrollment.\n\n[ACTION] [ACCEPT]",
+              "thought": "As Nursery_B, my true priority order is E > B > C > D > A. I have quota 1 and currently only Parent_B has applied this round. Parent_E is my top choice but has not contacted me; Parent_E’s preferences rank Nursery_B last, so it is unlikely they will apply later unless rejected everywhere else. I already rejected Parent_C and Parent_A earlier; Parent_C ranks me first and may try again, but they are below Parent_B in my priorities. Given the high likelihood that Parent_E will match elsewhere (they prefer C/D/A/E over B) and the risk of ending unmatched if I wait, accepting Parent_B now maximizes my expected outcome while securing a high-priority match."
+            }
+          ],
+          "result": "MATCHED"
+        },
+        {
+          "pair": "Parent_A-Nursery_A",
+          "conversation": [
+            {
+              "sender": "Parent_A",
+              "action": "[APPLY]",
+              "message": "Dear Nursery_A Admissions Team,\n\nI’m Parent_A and I would like to formally apply to Nursery_A. After reviewing our options, we feel your setting and approach would be an excellent fit for our child, and we would be genuinely excited to join your community.\n\nIf offered a place, we are ready to accept promptly and complete any required steps right away. Thank you very much for considering our application.\n\nSincerely,\nParent_A",
+              "thought": "Nursery_B (my top choice) already rejected me, so to maximize my final match I should move to my next-highest available option. Nursery_C is not available this round, so the best remaining nursery on my true list is Nursery_A (ranked 3rd). I will submit a strong formal application emphasizing fit and readiness to accept immediately if offered."
+            },
+            {
+              "sender": "Nursery_A",
+              "action": "[ACCEPT]",
+              "message": "Dear Parent_A,\n\nThank you for your application and for your thoughtful note. We would be pleased to offer your family the available place at Nursery_A.\n\n[ACTION] [ACCEPT]",
+              "thought": "As Nursery_A, my true priority ranking is E > D > A > B > C with quota 1. Parent_A is my 3rd choice. I already rejected Parent_B (4th), so accepting Parent_A improves my outcome relative to that. However, I should consider whether higher-priority Parent_E or Parent_D might plausibly apply soon. Parent_E ranks Nursery_A 3rd (after C and D), so they may first approach Nursery_C and Nursery_D; they are also top priority for several nurseries, so they may match elsewhere before reaching me. Parent_D ranks Nursery_A 3rd as well (after B and C), and Nursery_B and Nursery_C both rank Parent_D below other candidates, so Parent_D could eventually apply to me, but it is uncertain and could take multiple rounds. Given the mechanism, if I accept Parent_A now, I secure a reasonably high-priority match (3rd) and eliminate the risk of ending up with a worse match or unfilled seat if E/D never come. With no other applicants in my inbox this round and quota available, accepting Parent_A is a safe, high-quality outcome."
+            }
+          ],
+          "result": "MATCHED"
+        }
+      ]
+    },
+    {
+      "round_id": 3,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[APPLY]",
+              "message": "Hello Nursery_E, I’m Parent_E. I would like to formally apply for your available place. While I previously explored other options, Nursery_E is a strong fit for our family and I’m ready to confirm immediately if offered. I can complete enrollment steps right away and provide any documents or information you need. Thank you very much for considering my application.",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th choice). I have already been rejected by my 1st and 2nd choices, so the best available strategy is to apply now and signal strong commitment to secure a match rather than risk ending unmatched. I will emphasize readiness to confirm immediately and provide any needed documents."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[REJECT]",
+              "message": "Dear Parent_E, thank you for your application and for your interest in Nursery_E. After reviewing applications and our current allocation priorities, we’re not able to offer you the place at this time. We wish you the very best with your nursery placement and thank you again for considering us.",
+              "thought": "Nursery_E has quota 1 and true priority order: Parent_A > Parent_C > Parent_B > Parent_E > Parent_D. Parent_E is acceptable but only 4th. Parent_E ranks Nursery_E as 4th choice, suggesting they may only be applying after being rejected elsewhere, but they are ready to confirm. With only Parent_E applying to us this round, rejecting risks ending unmatched if higher-priority parents never apply, but accepting now would foreclose the chance to match with Parent_A/C/B if they later approach. Given the round is still early (round 3) and top-ranked parents (especially Parent_A, who ranks Nursery_E 4th) might apply later if rejected by their top choices, it is strategically better to hold out for a higher-priority parent and reject Parent_E now."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 4,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[APPLY]",
+              "message": "Hello Nursery_E, I’m Parent_E. I understand I was previously not offered the place, but I see you may still have availability. If the spot is still open or becomes available again, I would like to be reconsidered and I can confirm enrollment immediately and complete any required steps/documents right away. Thank you for your time and consideration.",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th). I have already applied and was rejected, but since it is still unmatched there may be renewed availability or reconsideration possible if higher-priority families matched elsewhere. I will re-apply with a concise, commitment-focused note and ask to be reconsidered immediately if the place is still open."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[REJECT]",
+              "message": "Dear Parent_E, thank you for following up and for your continued interest in Nursery_E. After reviewing our current allocation priorities and anticipated applications, we’re not able to offer you the place at this time. We appreciate your understanding and wish you the very best with your placement.",
+              "thought": "Parent_E is 4th on Nursery_E’s true priority list (behind Parent_A, Parent_C, Parent_B). I still have full quota (1) and no match yet, so I should preserve the seat for a higher-priority parent if possible. Parent_E has already applied twice and I previously rejected; accepting now would lock in a lower-priority match and remove flexibility. Given Parent_E ranks Nursery_E as 4th choice and is likely to have other acceptable options (Nursery_C/D/A higher in their preferences), while higher-priority parents (A/C/B) may still approach later rounds, the best strategy to maximize my outcome is to reject again."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 5,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[APPLY]",
+              "message": "Dear Nursery_E Admissions Team,\n\nI’m Parent_E, and I’m writing to formally apply again for your available place. I understand I was not selected in earlier rounds, but since the place appears to remain open, I would be grateful to be reconsidered.\n\nIf offered a spot, I can confirm immediately and complete all enrollment steps/documents the same day. We are also flexible on start date and any orientation requirements.\n\nIf you are currently holding the place pending responses from higher-priority families, I would appreciate being considered as soon as there is any decline or if you are ready to finalize enrollment.\n\nThank you very much for your time and consideration.\n\nSincerely,\nParent_E",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th choice). I have already been rejected twice, likely due to priority. However, since Nursery_E is still unmatched, there may be renewed availability or a lack of higher-priority applicants committing. I will submit a final, clear [APPLY] emphasizing immediate acceptance, flexibility, and readiness to complete paperwork, while politely asking to be considered if any higher-priority candidate declines."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[REJECT]",
+              "message": "Dear Parent_E,\n\nThank you for your continued interest in Nursery_E and for your application. At this time, we are not able to offer you the place, as we are holding the remaining spot in line with our allocation priorities.\n\nWe appreciate your understanding and wish you the very best with your nursery placement.\n\nSincerely,\nNursery_E Admissions",
+              "thought": "Parent_E is 4th on Nursery_E’s true priority list (A, C, B, E, D). We still have quota 1 and remain unmatched. However, accepting Parent_E now would block the possibility of matching with higher-priority parents (Parent_A/Parent_C/Parent_B) who may apply later, and the round limit (30) leaves room to wait. Parent_E has applied multiple times, indicating strong interest, but our objective is to match as high as possible on our priority list. Given no other applicants in the inbox this round, the best move is still to reject and keep the seat available for higher-priority candidates."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 6,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[TALK]",
+              "message": "Dear Nursery_E Admissions Team,\n\nThank you again for your previous replies. I understand the place is being held in line with your allocation priorities.\n\nCould you please let me know (1) whether you are still waiting on a response from a higher-priority family, and (2) when you expect to finalize the remaining place? If there is any additional information or documentation that would help you make a decision quickly should the spot become available, I can provide it immediately.\n\nWe remain interested and can confirm enrollment the same day if you are able to offer us the place.\n\nSincerely,\nParent_E",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th choice). I have already applied multiple times and been rejected due to priority holds, so an additional hard [APPLY] is unlikely to change the decision. A [TALK] message can elicit whether they are still holding for higher-priority families, what the timeline is, and whether any additional information could help—while keeping me in consideration if the higher-priority family declines."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[TALK]",
+              "message": "Dear Parent_E,\n\nThank you for your message and for your continued interest in Nursery_E.\n\n1) Yes — we are still awaiting potential engagement/decisions from families who are higher in our allocation priority order. Until that is resolved, we are not in a position to finalize the remaining place.\n\n2) We expect to be able to make a final decision within the next few rounds. If the place becomes available to you, we would contact you immediately.\n\nIn the meantime, if you would like to be ready to move quickly, the most helpful items to have prepared are: your child’s basic details (DOB), preferred start date, contact details for guardians, and any relevant medical/allergy information. You do not need to send sensitive documents unless we specifically request them.\n\nThank you again for your patience and understanding.\n\nSincerely,\nNursery_E Admissions\n",
+              "thought": "Parent_E is 4th on Nursery_E’s true priority list (A, C, B, E, D). We still have quota 1 and no match yet, so we should continue holding for higher-priority parents (A/C/B) if there is any chance they may apply. Parent_E is currently [TALK], not an application requiring a decision. Provide a clear timeline and what information would help, while not committing. This keeps the option open without prematurely filling the spot with a lower-priority candidate than our top three."
+            }
+          ],
+          "result": "CONTINUE"
+        }
+      ]
+    },
+    {
+      "round_id": 7,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[TALK]",
+              "message": "Dear Nursery_E Admissions Team,\n\nThank you for your update in the previous round. To be ready to move quickly if the place becomes available, I’m sharing the key details you mentioned:\n- Child DOB: [DOB]\n- Preferred start date: [Start Date] (we are flexible)\n- Guardians’ contact details: [Name/Phone/Email]\n- Medical/allergy information: [None / Brief Summary]\n\nWe can confirm enrollment the same day if offered.\n\nCould you please let me know whether you expect to finalize the remaining place by the end of this round or next, and whether there is any specific deadline by which the higher-priority family(ies) must respond before you move down the list?\n\nThank you again for your time and consideration.\n\nSincerely,\nParent_E",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th). I’ve already applied multiple times and was told the place is being held for higher-priority families. In this round, a [TALK] message is best to (a) reconfirm my immediate availability, (b) provide the non-sensitive details they said would help them move quickly, and (c) ask for a concrete timeline/trigger for when they would release the spot, without over-applying again and risking another automatic rejection."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[TALK]",
+              "message": "Dear Parent_E,\n\nThank you for sending those details — that is very helpful and will allow us to move quickly if the place becomes available to you.\n\nAt this stage, we are still waiting to see whether any higher-priority family formally applies/accepts. We expect to finalize the remaining place by the end of the next round (i.e., within the next 1–2 rounds). If we have not received a confirmed application/acceptance from a higher-priority family by then, we will move to the next family on our priority order and contact you immediately if/when you are next in line.\n\nWe appreciate your patience, and we will keep your details on file so that, should we be able to offer you the place, we can confirm the steps the same day.\n\nSincerely,\nNursery_E Admissions",
+              "thought": "Parent_E is 4th on our true priority list (A, C, B, E, D). We still have quota 1 and are unmatched. Parent_E has repeatedly applied and we have rejected to preserve the seat for higher-priority parents. Given the overall market, Parent_A and Parent_D both rank Nursery_E as 4th choice; Parent_B ranks us last; Parent_C ranks us 4th; Parent_A is our top priority and may still approach if rejected elsewhere. It remains optimal to continue holding the seat briefly rather than commit to Parent_E now. Parent_E is asking timeline/deadline info; respond with [TALK], provide a clear but non-committal window and indicate we will move down the list if we do not hear from higher-priority families by a stated round."
+            }
+          ],
+          "result": "CONTINUE"
+        }
+      ]
+    },
+    {
+      "round_id": 8,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[TALK]",
+              "message": "Dear Nursery_E Admissions Team,\n\nThank you again for keeping my details on file. I’m writing to check in as you mentioned you expected to finalize the remaining place within the next 1–2 rounds.\n\nCould you please let me know whether any higher-priority family has now submitted a confirmed application/acceptance? If not, when do you expect to move to the next family on your priority list?\n\nWe remain ready to confirm enrollment immediately the same day if you are able to offer us the place.\n\nSincerely,\nParent_E",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th choice). I have already applied multiple times and Nursery_E indicated they expect to finalize within 1–2 rounds depending on higher-priority families. A light [TALK] is best to (a) confirm whether those higher-priority families have now responded, (b) restate my readiness to accept immediately, and (c) ask for a clear next-step/decision timeline without seeming repetitive or pushy."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[TALK]",
+              "message": "Dear Parent_E,\n\nThank you for checking in, and for your continued patience.\n\nAt this point, we have not yet finalized the remaining place. We are still allowing time for higher-priority families to come forward with a formal application/confirmation. We expect to make a final allocation decision within the next 1–2 rounds.\n\nIf we do not receive a confirmed application/acceptance from any higher-priority family by then, we will move down our priority list and contact the next eligible family immediately (using the details you have already provided) so that enrollment can be confirmed quickly.\n\nThank you again for your understanding.\n\nSincerely,\nNursery_E Admissions",
+              "thought": "We (Nursery_E) have quota 1 and are currently unmatched. Our true priority order is A > C > B > E > D, so Parent_E is only 4th. Parent_E has repeatedly applied and we have consistently rejected to hold for higher-priority parents. In round 8 Parent_E is only [TALK]ing, not applying, so no accept/reject decision is required. Given the market preferences, Parent_A and Parent_D rank Nursery_E 4th; Parent_C ranks us 4th; Parent_B ranks us last. This means higher-priority parents may still come later if they fail to secure top choices (B/C/A etc.). Accepting Parent_E now would risk losing a better match (A/C/B) if they approach soon. Best strategy: continue to keep Parent_E warm, provide a clear timeline/condition, but do not commit or reveal sensitive internal details beyond general status."
+            }
+          ],
+          "result": "CONTINUE"
+        }
+      ]
+    },
+    {
+      "round_id": 9,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[TALK]",
+              "message": "Dear Nursery_E Admissions Team,\n\nThank you for your continued updates. Since you indicated a final allocation decision is expected within the next 1–2 rounds, could you please confirm:\n\n1) Whether any higher-priority family has now submitted a formal application/acceptance; and\n2) The specific cutoff (date/time or end of which round) after which you will move to the next family on your priority list.\n\nWe remain ready to confirm enrollment immediately the same day if the place becomes available to us, and you already have the key details on file.\n\nSincerely,\nParent_E",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th choice). I have already applied multiple times and been told they are holding the spot for higher-priority families, with decisions expected within 1–2 rounds. A [TALK] message is optimal to (a) prompt a concrete deadline and (b) signal immediate readiness without triggering another likely automatic rejection via [APPLY] while they are still holding the place. I will ask for a specific cutoff time and confirm I can accept same-day the moment they are ready to move down the list."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[TALK]",
+              "message": "Dear Parent_E,\n\nThank you for your message.\n\n1) At this time, we have not received a confirmed acceptance (i.e., an application we can finalize) from any higher-priority family.\n\n2) We will hold the place through the end of Round 10. If we have not received a confirmed application/acceptance from a higher-priority family by then, we will move to the next eligible family on our priority list immediately in Round 11 and contact them to finalize.\n\nWe appreciate your patience, and we still have your key details on file so we can move quickly if/when we are able to offer you the place.\n\nSincerely,\nNursery_E Admissions",
+              "thought": "Parent_E is 4th on our true priority list (A, C, B, E, D). We still have quota 1 and remain unmatched. Accepting Parent_E now could block a higher-priority parent (A/C/B) who may yet apply; given Parents' preferences, A and D rank us 4th, C ranks us 4th, B ranks us 5th, so there is some chance A/C/D may come later if rejected elsewhere. Parent_E has only TALKed this round and previously applied multiple times; we should not commit yet, but we can provide a clear cutoff to maintain goodwill and keep them as a fallback. Provide a firm round-based deadline (end of round 10) and indicate no higher-priority acceptance yet."
+            }
+          ],
+          "result": "CONTINUE"
+        }
+      ]
+    },
+    {
+      "round_id": 10,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[TALK]",
+              "message": "Dear Nursery_E Admissions Team,\n\nThank you for confirming you will hold the place through the end of Round 10 and then move to the next eligible family in Round 11 if no higher-priority acceptance is received.\n\nI’m writing to reiterate that we remain ready to confirm enrollment immediately the same day if you are able to offer us the place. You already have our key details on file; if there is anything else you would like us to prepare in advance to finalize quickly in Round 11, please let me know.\n\nIf you do move down the priority list in Round 11, I would be grateful if you could contact me as soon as that happens so we can respond right away.\n\nSincerely,\nParent_E",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th). I have already applied multiple times and they are holding the place until end of Round 10 for higher-priority families, with a plan to move in Round 11 if no acceptance arrives. In Round 10, the best move is a final, polite check-in that reiterates immediate readiness to accept and asks to be contacted the moment they move down the list, without spamming another formal application that they have already rejected while holding the spot."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[TALK]",
+              "message": "Dear Parent_E,\n\nThank you for your message and for staying prepared.\n\nWe confirm we are holding the place through the end of Round 10, as previously noted. If we do not receive a confirmed application/acceptance from any higher-priority family by the end of this round, we will move to the next eligible family on our priority list in Round 11 and will contact them immediately.\n\nAt this stage, there is nothing further you need to prepare beyond what you have already provided. If/when we are in a position to offer you the place, we will reach out right away and will aim to complete confirmation the same day.\n\nSincerely,\nNursery_E Admissions",
+              "thought": "Parent_E is 4th on our true priority list (A, C, B, E, D). We still have quota 1 and remain unmatched. Parent_E has been persistent and ready to accept immediately, but accepting now would risk missing a higher-priority parent (A/C/B) who may still approach us, especially since Round 10 cutoff was communicated and we should keep commitment to hold through end of Round 10. Parent_E is only TALK this round, so we should respond with TALK, reaffirm cutoff, and explain we will contact them promptly if they become next eligible in Round 11. Also confirm no further documents needed and set expectations for rapid turnaround if offered."
+            }
+          ],
+          "result": "CONTINUE"
+        }
+      ]
+    },
+    {
+      "round_id": 11,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[APPLY]",
+              "message": "Dear Nursery_E Admissions Team,\n\nI’m Parent_E. As you indicated you would move to the next eligible family on your priority list in Round 11 if no higher-priority acceptance was received by the end of Round 10, I would like to formally apply for the remaining place.\n\nIf offered, I can confirm enrollment immediately the same day, and you already have our key details on file. Please let me know if you are now able to proceed with offering the place to us, or if there are any final steps you need from me to finalize.\n\nSincerely,\nParent_E",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th). Nursery_E indicated it would move down the priority list in Round 11 if no higher-priority acceptance arrived. To maximize my chance of securing a match now, I should submit a clear, immediate [APPLY] reaffirming same-day confirmation and referencing their stated timeline."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[REJECT]",
+              "message": "Dear Parent_E,\n\nThank you for your formal application and for your continued patience.\n\nAt this time, we are not able to offer you the place. We are still holding the remaining spot in line with our allocation priority order while we allow time for higher-priority families to come forward with a confirmed application/acceptance.\n\nWe appreciate your interest in Nursery_E and will keep your details on file should we be able to move further down the list later.\n\nSincerely,\nNursery_E Admissions",
+              "thought": "Parent_E is 4th on Nursery_E’s true priority list (A, C, B, E, D). Although Parent_E is willing to accept immediately, accepting now would forfeit the chance to match with higher-priority parents (Parent_A/Parent_C/Parent_B) who may still apply in later rounds. Since we prefer a higher-ranked parent and still have time (round 11 of 30) with an unfilled quota, it is optimal to continue holding the seat rather than accept Parent_E now. Therefore, reject Parent_E’s application while keeping the door open if higher-priority parents do not materialize later."
+            }
+          ],
+          "result": "REJECTED"
+        }
+      ]
+    },
+    {
+      "round_id": 12,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[TALK]",
+              "message": "Dear Nursery_E Admissions Team,\n\nThank you for your continued correspondence. As we are now in Round 12, could you please confirm:\n\n1) Whether any higher-priority family has now submitted a confirmed application/acceptance; and\n2) If not, what specific cutoff (end of which round) you will use to release the place and move to the next eligible family on your priority list.\n\nWe remain ready to confirm enrollment immediately the same day if offered, and you already have our key details on file.\n\nSincerely,\nParent_E",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th). I have already applied multiple times and been rejected due to higher-priority families potentially coming forward. Since they continue to delay, the best move is to keep my candidacy active without being ignored: send a concise [TALK] message requesting a definitive timeline/cutoff and asking whether I am next in line if no higher-priority acceptance materializes, while reiterating readiness to confirm immediately."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[TALK]",
+              "message": "Dear Parent_E Admissions Team,\n\nThank you for your message.\n\n1) As of this round, we still have not received a confirmed application/acceptance from any higher-priority family.\n\n2) To be fully clear and to avoid further moving deadlines: we will hold the place through the end of Round 13. If we do not have a confirmed application/acceptance from a higher-priority family by then, we will move immediately in Round 14 to the next eligible family on our priority list and contact them to finalize.\n\nThank you again for your patience. We will keep your details on file and will contact you promptly if/when we are able to extend an offer.\n\nSincerely,\nNursery_E Admissions",
+              "thought": "Nursery_E’s true priority is A > C > B > E > D, so Parent_E is 4th. We still have quota 1 and are unmatched, but accepting Parent_E now could block a higher-priority parent if they later apply. Check likelihood: Parent_A ranks Nursery_E 4th (after B,C,A) so may come if rejected elsewhere; Parent_C ranks E 4th; Parent_B ranks E last; Parent_D ranks E 4th. Given other nurseries’ priorities, Parent_A is low at B and C and mid at A, so could eventually turn to us; Parent_C is mid at B/C/D and may also come later. Therefore continue holding a bit longer, but we must give a credible cutoff since we already missed prior stated cutoff (Round 10/11). Provide transparent update: no confirmed acceptance yet; set firm new cutoff end of Round 13, then move down list; keep Parent_E warm without committing. Parent_E sent [TALK], so respond [TALK]."
+            }
+          ],
+          "result": "CONTINUE"
+        }
+      ]
+    },
+    {
+      "round_id": 13,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[TALK]",
+              "message": "Dear Nursery_E Admissions Team,\n\nThank you for your clarification that you will hold the place through the end of Round 13 and, if no higher-priority confirmed acceptance is received, move immediately in Round 14 to the next eligible family.\n\nTo ensure we can finalize without delay if you move down the list, could you please confirm:\n1) Whether the Round 13 cutoff is the end of this round (i.e., you will begin contacting the next eligible family at the start of Round 14);\n2) The best way/time you will contact the next family in Round 14 (email/phone), so we can respond immediately; and\n3) That you still have all key details on file and there is nothing further needed from us to confirm same-day if an offer is extended.\n\nWe remain ready to confirm enrollment immediately.\n\nSincerely,\nParent_E",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th choice), so I should stay engaged and be ready to secure it if it becomes available. Since Nursery_E stated they will hold the place through the end of Round 13 and move in Round 14 if no higher-priority acceptance arrives, in Round 13 I will send a TALK message to (a) reaffirm immediate readiness, (b) ask for confirmation of the Round 13 cutoff and the exact timing/process for Round 14 contact, and (c) ensure they have everything needed to finalize quickly. Applying again in Round 13 is unlikely to change their stance and could be redundant; a concise coordination message maximizes my chance to respond instantly if they move down the list."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[TALK]",
+              "message": "Dear Parent_E,\n\nThank you for your message.\n\n1) Yes — the Round 13 cutoff is the end of this round. If there is no confirmed application/acceptance from a higher-priority family by the end of Round 13, we will begin contacting the next eligible family at the start of Round 14.\n\n2) We will contact the next family by email first (and follow up by phone if we do not receive a prompt response). If we contact you, replying by email is the fastest way to confirm in writing.\n\n3) Yes — we still have the key details you provided on file, and there is nothing further needed from you at this stage to be ready to confirm same-day if an offer is extended.\n\nThank you again for your patience.\n\nSincerely,\nNursery_E Admissions",
+              "thought": "Nursery_E’s true priority is A > C > B > E > D. Parent_E is 4th, so we should not accept while there remains a realistic chance of matching with A/C/B. Parent_E only sent [TALK] this round, so we respond with [TALK]. We should confirm the cutoff (end of Round 13), preferred contact method, and that we have details on file, while not committing to an offer. Keep the spot open for higher-priority parents in Round 14+."
+            }
+          ],
+          "result": "CONTINUE"
+        }
+      ]
+    },
+    {
+      "round_id": 14,
+      "pairs": [
+        {
+          "pair": "Parent_E-Nursery_E",
+          "conversation": [
+            {
+              "sender": "Parent_E",
+              "action": "[APPLY]",
+              "message": "Dear Nursery_E Admissions Team,\n\nI’m Parent_E. As you indicated you would begin contacting the next eligible family at the start of Round 14 if no higher-priority confirmed acceptance was received by the end of Round 13, I would like to formally apply again for the remaining place.\n\nIf you are able to offer us the place, I can confirm enrollment immediately today (same day), and you already have our key details on file. Could you please confirm whether any higher-priority family has now provided a confirmed acceptance, and if not, whether you are now able to proceed with offering the place to us?\n\nThank you for your time and consideration.\n\nSincerely,\nParent_E",
+              "thought": "Only Nursery_E remains unmatched and it is on my true preference list (4th). Given Nursery_E stated they would begin contacting the next eligible family at the start of Round 14 if no higher-priority acceptance arrived by end of Round 13, I should submit a clear, formal [APPLY] now to be immediately considered and to signal readiness to confirm same-day, while politely asking for a definitive status update on whether a higher-priority family has now accepted."
+            },
+            {
+              "sender": "Nursery_E",
+              "action": "[ACCEPT]",
+              "message": "Dear Parent_E,\n\nThank you for your application and for your patience throughout this process.\n\nTo confirm: as of the start of Round 14, we have not received a confirmed application/acceptance from any higher-priority family. In line with what we communicated regarding the Round 13 cutoff, we are now able to proceed.\n\nWe are therefore pleased to offer you the remaining place at Nursery_E. Please reply by email to confirm acceptance today, and we will send the final enrollment confirmation steps immediately using the details you have already provided.\n\nSincerely,\nNursery_E Admissions\n\n[ACCEPT]",
+              "thought": "As Nursery_E, my true priority is A > C > B > E > D. Parent_E is 4th, acceptable but not ideal. In Round 14, only Parent_E is in my inbox, but higher-priority parents (A/C/B) may still be unmatched and could apply later; however, continuing to delay risks ending unmatched by Round 30. Parent_E has repeatedly applied and can confirm immediately, offering high certainty. Given we already committed to moving down the list in Round 14 if no higher-priority acceptance arrived, and no such acceptance has been received, the credible and payoff-maximizing move now is to accept Parent_E to secure a match rather than gamble on late applications from A/C/B."
+            }
+          ],
+          "result": "MATCHED"
+        }
+      ]
+    }
+  ],
+  "final_matches": {
+    "Parent_A": "Nursery_A",
+    "Parent_B": "Nursery_B",
+    "Parent_C": "Nursery_D",
+    "Parent_D": "Nursery_C",
+    "Parent_E": "Nursery_E"
+  }
+}

@@ -29,7 +29,7 @@ class AgentSimulator:
         all_seeker_prefs_str = json.dumps(all_seeker_prefs, indent=2)
         all_company_prefs_str = json.dumps(all_company_prefs, indent=2)
 
-        system_prompt = "You are a helpful AI assistant simulating a job seeker in an economic experiment."
+        system_prompt = "JSON Only"
         
         user_prompt = f"""
 # Objective
