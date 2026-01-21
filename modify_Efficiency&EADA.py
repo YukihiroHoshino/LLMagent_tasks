@@ -280,7 +280,7 @@ def check_pareto_efficiency_bruteforce(seeker_matches, seekers_true_prefs, quota
 # 3. Main Processing Logic
 # ==========================================
 
-def process_all_experiments(root_folder="00_Gemini"):
+def process_all_experiments(root_folder="01_GPT"):
     if not os.path.exists(root_folder):
         print(f"Error: Folder '{root_folder}' not found.")
         return

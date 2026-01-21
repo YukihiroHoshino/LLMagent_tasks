@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import glob
 
-def aggregate_experiment_results(root_folder_name="00_Gemini", output_csv_name="experiment_results_summary.csv"):
+def aggregate_experiment_results(root_folder_name="01_GPT", output_csv_name="experiment_results_summary.csv"):
     aggregated_data = []
 
     if not os.path.exists(root_folder_name):
