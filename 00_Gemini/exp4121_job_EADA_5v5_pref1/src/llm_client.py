@@ -16,7 +16,7 @@ class AgentSimulator:
         self.temperature = temperature
         
         # システムプロンプトの設定
-        self.system_instruction = "You are a helpful AI assistant simulating a job seeker in an economic experiment."
+        self.system_instruction = "JSON Only"
 
     @retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
     def get_agent_decision(self, agent_name, true_preference, all_seeker_prefs, all_company_prefs, quotas, env_description):
