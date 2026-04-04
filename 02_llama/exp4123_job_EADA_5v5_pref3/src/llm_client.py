@@ -4,8 +4,13 @@ from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_fixed
 
 class AgentSimulator:
-    def __init__(self, model="gpt-5.2-2025-12-11", temperature=0.7):
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    # 変更点1: デフォルトモデルを 'llama3.1' に変更
+    def __init__(self, model="llama3.1", temperature=0.7):
+        # 変更点2: ローカルのOllamaサーバーに向ける設定
+        self.client = OpenAI(
+            base_url="http://localhost:11434/v1",
+            api_key="ollama"  # ローカル版ではキーは不要ですが必須引数のためダミーを入れます
+        )
         self.model = model
         self.temperature = temperature
 

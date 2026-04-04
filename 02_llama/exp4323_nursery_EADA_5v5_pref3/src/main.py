@@ -151,7 +151,7 @@ def main():
     job_seekers_true = pref_data["parents"]
     companies_true = pref_data["nurseries"]
     
-    simulator = AgentSimulator(model="gpt-5.2-2025-12-11", temperature=0.7)
+    simulator = AgentSimulator(model="llama3.1", temperature=0.7)
     
     all_trials_details = [] 
     trial_stats = []
