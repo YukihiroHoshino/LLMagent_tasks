@@ -36,13 +36,13 @@ class AgentSimulator:
         
         user_prompt = f"""
 # Objective
-You are {agent_name}, a Job Seeker in the job market.
-Your goal is to match with a Company that is as high as possible on your "True Preference List".
+You are {agent_name}, a Student in the high school entrance exam market.
+Your goal is to match with a High School that is as high as possible on your "True Preference List".
 
 # Preference and Priority Information
 You have access to the preferences and priorities of all agents in the market.
 
-## 1. All Job Seekers' Preferences
+## 1. All Students' Preferences
 {all_seeker_prefs_str}
 
 ## 2. All Companies' Priorities
@@ -52,9 +52,9 @@ You have access to the preferences and priorities of all agents in the market.
 You are {agent_name}.
 Your "True Preference List": {true_preference}
 The closer to the left (or top), the higher your desire.
-You prefer remaining unemployed rather than matching with a Company not included in this list.
+You prefer remaining unemployed rather than matching with a High School not included in this list.
 
-# Company Quotas
+# High School Quotas
 The following is the list of available companies and their capacities (number of open positions):
 {quota_text}
 
@@ -73,7 +73,7 @@ Constraints:
 Output ONLY in JSON format, without including thought process outside the JSON.
 {{
   "thought_process": "Briefly explain your reasoning for constructing the list in this specific order based on the rules and the complete market information provided.",
-  "choice_ranking_list": ["Company_A", "Company_B", ...]
+  "choice_ranking_list": ["School_A", "School_B", ...]
 }}
 """
 

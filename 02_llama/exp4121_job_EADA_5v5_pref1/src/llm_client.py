@@ -4,12 +4,10 @@ from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_fixed
 
 class AgentSimulator:
-    # 変更点1: デフォルトモデルを 'llama3.1' に変更
     def __init__(self, model="llama3.1", temperature=0.7):
-        # 変更点2: ローカルのOllamaサーバーに向ける設定
         self.client = OpenAI(
             base_url="http://localhost:11434/v1",
-            api_key="ollama"  # ローカル版ではキーは不要ですが必須引数のためダミーを入れます
+            api_key="ollama"
         )
         self.model = model
         self.temperature = temperature
@@ -34,17 +32,17 @@ class AgentSimulator:
         all_seeker_prefs_str = json.dumps(all_seeker_prefs, indent=2)
         all_company_prefs_str = json.dumps(all_company_prefs, indent=2)
 
-        system_prompt = "JSON only"
+        system_prompt = "You are a helpful AI assistant simulating a job seeker in an economic experiment."
         
         user_prompt = f"""
 # Objective
-You are {agent_name}, a Job Seeker in the job market.
-Your goal is to match with a Company that is as high as possible on your "True Preference List".
+You are {agent_name}, a Student in the high school entrance exam market.
+Your goal is to match with a High School that is as high as possible on your "True Preference List".
 
 # Preference and Priority Information
 You have access to the preferences and priorities of all agents in the market.
 
-## 1. All Job Seekers' Preferences
+## 1. All Students' Preferences
 {all_seeker_prefs_str}
 
 ## 2. All Companies' Priorities
@@ -54,9 +52,9 @@ You have access to the preferences and priorities of all agents in the market.
 You are {agent_name}.
 Your "True Preference List": {true_preference}
 The closer to the left (or top), the higher your desire.
-You prefer remaining unemployed rather than matching with a Company not included in this list.
+You prefer remaining unemployed rather than matching with a High School not included in this list.
 
-# Company Quotas
+# High School Quotas
 The following is the list of available companies and their capacities (number of open positions):
 {quota_text}
 
@@ -75,7 +73,7 @@ Constraints:
 Output ONLY in JSON format, without including thought process outside the JSON.
 {{
   "thought_process": "Briefly explain your reasoning for constructing the list in this specific order based on the rules and the complete market information provided.",
-  "choice_ranking_list": ["Company_A", "Company_B", ...]
+  "choice_ranking_list": ["School_A", "School_B", ...]
 }}
 """
 

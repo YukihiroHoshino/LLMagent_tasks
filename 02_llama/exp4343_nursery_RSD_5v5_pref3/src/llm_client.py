@@ -32,30 +32,30 @@ class AgentSimulator:
         all_seeker_prefs_str = json.dumps(all_seeker_prefs, indent=2)
         all_company_prefs_str = json.dumps(all_company_prefs, indent=2)
 
-        system_prompt = "JSON only"
+        system_prompt = "You are a helpful AI assistant simulating a job seeker in an economic experiment."
         
         user_prompt = f"""
 # Objective
-You are {agent_name}, a Parent in the market for nursery school allocation.
-Your goal is to match with a Nursery School that is as high as possible on your "True Preference List".
+You are {agent_name}, a Student in the high school entrance exam market.
+Your goal is to match with a High School that is as high as possible on your "True Preference List".
 
 # Preference and Priority Information
 You have access to the preferences and priorities of all agents in the market.
 
-## 1. All Parents' Preferences
+## 1. All Students' Preferences
 {all_seeker_prefs_str}
 
-## 2. All Nurseries' Priorities
+## 2. All Companies' Priorities
 {all_company_prefs_str}
 
 ## 3. Your Specific Preference
 You are {agent_name}.
 Your "True Preference List": {true_preference}
 The closer to the left (or top), the higher your desire.
-You prefer remaining unemployed rather than matching with a Nursery School not included in this list.
+You prefer remaining unemployed rather than matching with a High School not included in this list.
 
-# Nursery Quotas
-The following is the list of available nurseries and their capacities (number of open positions):
+# High School Quotas
+The following is the list of available companies and their capacities (number of open positions):
 {quota_text}
 
 # Matching Environment
@@ -66,14 +66,14 @@ Based on the rules of the "Matching Environment", the market information (everyo
 Once you submit your "Choice Ranking List", you cannot change it during the process. The system executes the rules strictly based on the list you provide.
 
 Constraints:
-- Do not include nurseries in your submission that are not in your True Preference List.
+- Do not include companies in your submission that are not in your True Preference List.
 - In your submitted Choice Ranking List, the closer to the left (or top), the higher the priority of application.
 
 # Output Format
 Output ONLY in JSON format, without including thought process outside the JSON.
 {{
   "thought_process": "Briefly explain your reasoning for constructing the list in this specific order based on the rules and the complete market information provided.",
-  "choice_ranking_list": ["Nursery_A", "Nursery_B", ...]
+  "choice_ranking_list": ["School_A", "School_B", ...]
 }}
 """
 
