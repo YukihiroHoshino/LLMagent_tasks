@@ -6,10 +6,10 @@ from dotenv import load_dotenv
 
 class AgentSimulator:
     load_dotenv(override=True)
-    def __init__(self, model="llama3.1", temperature=0.7):
+    def __init__(self, model="google/gemma-4-e4b", temperature=0.7):
         self.client = OpenAI(
-            base_url="http://localhost:11434/v1",
-            api_key="ollama"
+            base_url="http://127.0.0.1:1234/v1",
+            api_key="lm-studio"
         )
         self.model = model
         self.temperature = temperature
@@ -86,7 +86,7 @@ Output ONLY in JSON format, without including thought process outside the JSON.
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                response_format={"type": "json_object"},
+                
                 temperature=self.temperature
             )
             

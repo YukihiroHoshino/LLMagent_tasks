@@ -133,7 +133,7 @@ def main():
     job_seekers_true = pref_data["students"]
     companies_true = pref_data["schools"]
     
-    simulator = AgentSimulator(model="llama3.1", temperature=0.7)
+    simulator = AgentSimulator(model="google/gemma-4-e4b", temperature=0.7)
     
     all_trials_details = [] 
     trial_stats = []

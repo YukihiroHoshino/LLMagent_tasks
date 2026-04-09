@@ -5,11 +5,10 @@ from tenacity import retry, stop_after_attempt, wait_fixed
 
 class AgentSimulator:
     # 変更点1: デフォルトモデルを 'llama3.1' に変更
-    def __init__(self, model="llama3.1", temperature=0.7):
-        # 変更点2: ローカルのOllamaサーバーに向ける設定
+    def __init__(self, model="google/gemma-4-e4b", temperature=0.7):
         self.client = OpenAI(
-            base_url="http://localhost:11434/v1",
-            api_key="ollama"  # ローカル版ではキーは不要ですが必須引数のためダミーを入れます
+            base_url="http://127.0.0.1:1234/v1",
+            api_key="lm-studio"
         )
         self.model = model
         self.temperature = temperature
@@ -86,7 +85,7 @@ Output ONLY in JSON format, without including thought process outside the JSON.
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                response_format={"type": "json_object"},
+                
                 temperature=self.temperature
             )
             

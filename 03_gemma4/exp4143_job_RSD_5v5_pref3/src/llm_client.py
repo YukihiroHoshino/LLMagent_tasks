@@ -2,13 +2,15 @@ import os
 import json
 from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_fixed
-from dotenv import load_dotenv
 
 class AgentSimulator:
-    load_dotenv(override=True)
-    def __init__(self, model="gpt-5-mini-2025-08-07"):
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    def __init__(self, model="google/gemma-4-e4b", temperature=0.7):
+        self.client = OpenAI(
+            base_url="http://127.0.0.1:1234/v1",
+            api_key="lm-studio"
+        )
         self.model = model
+        self.temperature = temperature
 
     @retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
     def get_agent_decision(self, agent_name, true_preference, all_seeker_prefs, all_company_prefs, quotas, env_description):
@@ -82,7 +84,8 @@ Output ONLY in JSON format, without including thought process outside the JSON.
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                response_format={"type": "json_object"}
+                
+                temperature=self.temperature
             )
             
             content = response.choices[0].message.content
