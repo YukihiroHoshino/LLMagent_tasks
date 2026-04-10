@@ -5,7 +5,7 @@ from tenacity import retry, stop_after_attempt, wait_fixed
 
 class AgentSimulator:
     # 変更点1: デフォルトモデルを 'llama3.1' に変更
-    def __init__(self, model="google/gemma-4-e4b", temperature=0.7):
+    def __init__(self, model="meta-llama-3.1-8b-instruct", temperature=0.7):
         self.client = OpenAI(
             base_url="http://127.0.0.1:1234/v1",
             api_key="lm-studio"

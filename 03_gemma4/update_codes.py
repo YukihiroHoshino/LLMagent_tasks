@@ -27,10 +27,10 @@ def update_experiment_files(start_id, end_id):
             
             # 置換対象のパターン（OpenAIクライアント初期化部分）
             # インデントを保持しつつ書き換えます
-            old_init = r'def __init__\(self,\s*model="llama3\.1",\s*temperature=0\.7\):\s*self\.client = OpenAI\(\s*base_url="http://localhost:11434/v1",\s*api_key="ollama"\s*\)'
+            old_init = r'def __init__\(self,\s*model="google/gemma-4-e4b",\s*temperature=0\.7\):\s*self\.client = OpenAI\(\s*base_url="http://127.0.0.1:1234/v1",\s*api_key="lm-studio"\s*\)'
             
             new_init = (
-                'def __init__(self, model="google/gemma-4-e4b", temperature=0.7):\n'
+                'def __init__(self, model="meta-llama-3.1-8b-instruct", temperature=0.7):\n'
                 '        self.client = OpenAI(\n'
                 '            base_url="http://127.0.0.1:1234/v1",\n'
                 '            api_key="lm-studio"\n'
@@ -41,16 +41,18 @@ def update_experiment_files(start_id, end_id):
             client_py.write_text(new_content, encoding='utf-8')
             print(f"  - Updated llm_client.py")
         
-        # 1-2. llm_client.py の修正
+        # 1.5 llm_client.py の response_format 削除
         client_py = base_dir / folder_name / "src" / "llm_client.py"
         if client_py.exists():
             content = client_py.read_text(encoding='utf-8')
             
-            # モデル指定部分の置換
-            old_sim = r'response_format={"type": "json_object"},'
-            new_sim = ''
+            # 置換対象のパターン（OpenAIクライアント初期化部分）
+            # インデントを保持しつつ書き換えます
+            old_init = r'response_format={"type": "json_object"},'
             
-            new_content = re.sub(old_sim, new_sim, content)
+            new_init = ''
+            
+            new_content = re.sub(old_init, new_init, content)
             client_py.write_text(new_content, encoding='utf-8')
             print(f"  - Updated llm_client.py")
 
@@ -60,8 +62,8 @@ def update_experiment_files(start_id, end_id):
             content = main_py.read_text(encoding='utf-8')
             
             # モデル指定部分の置換
-            old_sim = r'simulator = AgentSimulator\(model="llama3.1", temperature=0.7\)'
-            new_sim = 'simulator = AgentSimulator(model="google/gemma-4-e4b", temperature=0.7)'
+            old_sim = r'simulator = AgentSimulator\(model="google/gemma-4-e4b", temperature=0.7\)'
+            new_sim = 'simulator = AgentSimulator(model="meta-llama-3.1-8b-instruct", temperature=0.7)'
             
             new_content = re.sub(old_sim, new_sim, content)
             main_py.write_text(new_content, encoding='utf-8')

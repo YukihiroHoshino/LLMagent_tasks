@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 class AgentSimulator:
     load_dotenv(override=True)
-    def __init__(self, model="google/gemma-4-e4b", temperature=0.7):
+    def __init__(self, model="meta-llama-3.1-8b-instruct", temperature=0.7):
         self.client = OpenAI(
             base_url="http://127.0.0.1:1234/v1",
             api_key="lm-studio"
