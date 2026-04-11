@@ -7,10 +7,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(base_url="http://127.0.0.1:1234/v1", api_key="lm-studio")
 
 # デフォルトモデルを "gpt-5.2-2025-12-11" に変更
-def get_llm_response(system_prompt: str, user_prompt: str, model: str = "gpt-5.2-2025-12-11", temperature: float = 0.7) -> dict:
+def get_llm_response(system_prompt: str, user_prompt: str, model: str = "meta-llama-3.1-8b-instruct", temperature: float = 0.7) -> dict:
     """
     LLMに問い合わせを行い、JSONとしてパースした結果を返す。
     temperatureはデフォルトで0.7（ランダム性あり）に設定。
@@ -23,7 +23,6 @@ def get_llm_response(system_prompt: str, user_prompt: str, model: str = "gpt-5.2
                 {"role": "system", "content": "Output JSON only."},
                 {"role": "user", "content": user_prompt}
             ],
-            response_format={"type": "json_object"},
             temperature=temperature
         )
         

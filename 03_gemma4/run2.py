@@ -22,7 +22,7 @@ def run_experiments(start_id, end_id):
             continue
 
         exp_path = base_dir / folder_name
-        main_py = exp_path / "src" / "main.py"
+        main_py = exp_path / "main.py"
 
         if main_py.exists():
             print(f"\n{'='*50}")
@@ -33,7 +33,7 @@ def run_experiments(start_id, end_id):
                 # cwd(current working directory)を指定することで、
                 # そのフォルダの中で実行しているのと同じ状態を作り出す
                 result = subprocess.run(
-                    ["python", "src/main.py"],
+                    ["python", "main.py"],
                     cwd=exp_path,  # ここがポイント：フォルダを移動して実行
                     check=True     # エラーが出たら停止（必要に応じてFalseに）
                 )
@@ -41,10 +41,10 @@ def run_experiments(start_id, end_id):
             except subprocess.CalledProcessError as e:
                 print(f"❌ Error in {folder_name}: {e}")
         else:
-            print(f"⚠️ Skipped: {folder_name} (src/main.py not found)")
+            print(f"⚠️ Skipped: {folder_name} (main.py not found)")
 
 if __name__ == "__main__":
     # 実験の範囲を指定して実行
-    START = 4311
-    END = 4355
+    START = 6111
+    END = 6111
     run_experiments(START, END)

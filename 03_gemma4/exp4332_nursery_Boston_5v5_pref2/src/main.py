@@ -179,7 +179,23 @@ def main():
                 agent_submissions[seeker_name] = [] 
 
         # --- Phase 2: Run Matching Algorithm ---
-        final_matches_dict = run_boston_algorithm(agent_submissions, companies_true, quotas)
+        try:
+            final_matches_dict = run_boston_algorithm(agent_submissions, companies_true, quotas)
+        except KeyError as e:
+            # エラーが起きたら、その時のLLMの全回答を出力する
+            print(f"\n❌ [Trial {trial}] で KeyError が発生しました: {e}")
+            print("【LLMの提出内容（agent_submissions）】")
+            print(json.dumps(agent_submissions, indent=2, ensure_ascii=False))
+            
+            # 後で確認できるようにファイルにも保存しておく
+            error_log_path = os.path.join(output_dir, f"error_trial_{trial}_submissions.json")
+            with open(error_log_path, "w", encoding="utf-8") as f:
+                json.dump(agent_submissions, f, indent=2, ensure_ascii=False)
+            print(f"詳細を {error_log_path} に保存しました。")
+            
+            # プログラムを停止させる場合は raise e を残す。
+            # スキップして次のTrialに進む場合は raise e を消して continue にする。
+            raise e
         
         seeker_matches = {}
         for company, seekers in final_matches_dict.items():
